@@ -5,23 +5,30 @@ if (isset($_POST['signup'])) {
     $password = $_POST['password'];
     $rePassword = $_POST['rePassword'];
 
-    if (strlen($email) < 5) {
-        $err .= "Invalid email ! <br/>";
+    if ($email == '' || $password == '' || $rePassword == '') {
+        $err = "Vui lòng nhập đủ ! <br/>";
     }
-    if (strlen($password) < 8) {
-        $err .= "Password needs to be at least 8 characters long ! <br/>";
+    else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $err = "Email không đúng có pháp ! <br/>";
     }
-    if ($password != $rePassword) {
-        $err .= "Password & Retype Password must be the same ! <br/>";
+    else if (strlen($password) < 8) {
+        $err = "Mật khẩu ít nhất 8 kí tự !<br/>";
+    }
+    else if (strpos($password, ' ') !== false) {
+        $err = "Không chứa dấu cách !<br/>";
+    }
+    else if ($password != $rePassword) {
+        $err = "Mật khẩu nhập lại ko chính xác ! <br/>";
     }
 
     if ($err == "") {
         $db = new User();
         if ($db->checkAccount($email)) {
-            $newAcc = $db->createAccUser($email, $password);
+            $newAcc = $db->createAcc($email, $password);
+            echo "<script>alert('Đăng ký tài khoản thành công');</script>";
             echo "<script>document.location='index.php?page=login';</script>";
         } else {
-            $err .= "Your email is registered ! <br/>";
+            $err = "Email này đã đăng ký !<br/>";
         }
     }
 }
@@ -30,35 +37,29 @@ if (isset($_POST['signup'])) {
     <div class="wrap">
         <div class="heading">
             <img src="images/logoShop.png" width="200px">
+        </div>
+        <form method="post">
+            <div class="form-group">
+                <input type="text" name="email">
+                <span>Email</span>
+                <i></i>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password">
+                <span>Mật khẩu</span>
+                <i></i>
+            </div>
+            <div class="form-group">
+                <input type="password" name="rePassword">
+                <span>Nhập lại mật khẩu</span>
+                <i></i>
+            </div>
             <?php global $err;
             if ($err != "") { ?>
                 <div class="alert alert-danger">
                     <?= $err ?>
                 </div>
             <?php } ?>
-        </div>
-        <form method="post">
-            <div class="form-group">
-                <input type="text" required name="email">
-                <span>Email</span>
-                <i></i>
-            </div>
-            <div class="form-group">
-                <input type="text" required name="username">
-                <span>Tài khoản</span>
-                <i></i>
-            </div>
-            <div class="form-group">
-                <input type="password" required name="password">
-                <span>Mật khẩu</span>
-                <i></i>
-            </div>
-            <div class="form-group">
-                <input type="password" required
-                    name="rePassword">
-                <span>Nhập lại mật khẩu</span>
-                <i></i>
-            </div>
             <div class="form-group btn">
                 <a href="?page=login" class="login">Đăng nhập</a>
                 <button class="normal" name="signup">Tạo</button>
