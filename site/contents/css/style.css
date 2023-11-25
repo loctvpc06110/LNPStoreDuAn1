@@ -353,16 +353,8 @@ body {
 }
 
 #banner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-image: url("images/bg/bg-banner.jpg");
     width: 100%;
     height: 40vh;
-    background-size: cover;
-    background-position: center;
 }
 
 #banner h4 {
@@ -1376,11 +1368,12 @@ footer a:hover {
 
     #hero {
         padding: 0 20px;
-        background-position: 55%;
+        width: 100%;
+        height: 35vh;
     }
 
     #feature {
-        justify-content: space-between;
+        justify-content: center;
     }
 
     #feature .fe-box {
