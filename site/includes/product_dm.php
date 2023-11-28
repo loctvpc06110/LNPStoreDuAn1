@@ -1,12 +1,10 @@
 <section id="product1" class="section-p1">
     <?php
+    $id = $_GET['id'];
     $db = new Categories();
-    $rows2 = $db->lishCategoriesName();
-
-    foreach ($rows2 as $row2)
-        extract($row2); { ?>
-        <h2>Điện Thoại <?php echo $row2['prod_name'] ?></h2>
-    <?php } ?>
+    $rows2 = $db->lishCategoriesName($id);
+    ?>
+    <h2>Điện Thoại <?= $rows2['cate_name'] ?></h2>
 
     <div class="pro-container">
         <?php

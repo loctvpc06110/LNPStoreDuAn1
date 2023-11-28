@@ -278,15 +278,15 @@ body {
 
 #product1 .pro-container {
     display: flex;
-    /* justify-content: space-between; */
     justify-content: flex-start;
     padding-top: 20px;
     flex-wrap: wrap;
+    margin-left: -30px;
 }
 
 
 #product1 .pro{
-    width: 23%;
+    width: calc(25% - 30px);
     min-width: 250px;
     padding: 10px 12px;
     margin-left: 20px;
@@ -295,6 +295,7 @@ body {
     margin: 15px 0;
     transition: 0.2s ease;
     position: relative;
+    margin-left: 30px;
 }
 
 #product1 .pro:hover {

@@ -3,7 +3,7 @@
 // Khai báo thuộc tính của Categories
 
 class Categories{
-    var $cate_id = null;
+    var $id = null;
     var $name = null;
     var $status = null;
    
@@ -19,17 +19,11 @@ class Categories{
         $nameCategories = $db->pdo_query($sql);
         return $nameCategories;
     }
-    public function lishCategoriesName() {
+    public function lishCategoriesName($id) {
         $db = new connect();
-        $sql = "SELECT categories.name AS prod_name FROM categories INNER JOIN products ON categories.cate_id = products.cate_id";
-        $CategoriesDM = $db->pdo_query($sql);
+        $sql = "SELECT categories.name AS cate_name FROM categories INNER JOIN products ON categories.cate_id = products.cate_id WHERE products.cate_id='$id';";
+        $CategoriesDM = $db->pdo_query_one($sql);
         return $CategoriesDM;
     }
-    // public function lishProductDM() {
-    //     $db = new connect();
-    //     $sql = "SELECT * FROM categories INNER JOIN products ON categories.cate_id = products.cate_id";
-    //     $ProductDM = $db->pdo_query($sql);
-    //     return $ProductDM;
-    // }
 }
 ?>
