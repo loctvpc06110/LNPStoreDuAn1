@@ -22,7 +22,8 @@ class Product
         return $result;
     }
 
-    public function getList() {
+    public function getList()
+    {
         $db = new connect();
         $query = "SELECT  products.prod_id AS prod_id, products.status AS prod_status, products.image AS image, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name  
         FROM products 
@@ -31,7 +32,7 @@ class Product
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
         INNER JOIN desc_image ON products.prod_id = desc_image.prod_id
         GROUP BY prod_id;";
-        
+
         $result = $db->pdo_query($query);
         return $result;
     }
@@ -52,5 +53,26 @@ class Product
         $result = $db->pdo_execute($query);
         $result = $db->pdo_query($query);
         return  $result;
+    }
+    public function add_prd($id, $name, $status, $image, $price, $view, $promoID, $cateID)
+    {
+        $db = new connect();
+        $query = "INSERT INTO products (id, name, status, image, price, view, promoID, cateID) values ('$id', '$name', '$status', '$image', '$price', '$view', '$promoID', '$cateID')";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+    public function add_detail($sim, $screen, $battery, $os, $camera, $prod_id, $camera_front, $chip, $ram, $rom)
+    {
+        $db = new connect();
+        $query = "INSERT INTO detail_prod (sim, screen, battery, os, camera, prod_id, camera_front, chip, ram, rom) values '$sim', '$screen', '$battery', '$os', '$camera', '$prod_id', '$camera_front', '$chip', '$ram', '$rom')";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+    public function add_image($prod_id, $image)
+    {
+        $db = new connect();
+        $query = "INSERT INTO desc_image (prod_id , image) values '$prod_id', '$image')";
+        $result = $db->pdo_execute($query);
+        return $result;
     }
 }
