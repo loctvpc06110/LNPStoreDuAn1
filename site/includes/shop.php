@@ -1,13 +1,25 @@
 <section id="page-header">
-   
+
 </section>
+
+<?php
+$db = new Categories();
+$rows2 = $db->lishCategories();
+
+foreach ($rows2 as $row2) { ?>
+    <a href="?page=product_dm&id=<?php echo $row2['cate_id'] ?>">
+        <div>
+            <h4><?php echo $row2['name'] ?></h4>
+        </div>
+    </a>
+<?php } ?>
 
 <section id="product1" class="section-p1">
     <h2>Tất Cả Sản Phẩm</h2>
 
     <div class="pro-container">
 
-    <?php
+        <?php
         $db = new Product();
         $rows1 = $db->getListDetail();
 
