@@ -1,5 +1,5 @@
 <section id="hero">
-    
+
 </section>
 <!--End Hero -->
 
@@ -15,7 +15,7 @@
 
         <?php
         $db = new Product();
-        $rows1 = $db->getListDetail();
+        $rows2 = $db->getListDetail();
 
         foreach ($rows1 as $row1) { ?>
 
@@ -57,25 +57,25 @@
             <div class="image">
                 <img src="images/bg/slider01.jpg" alt="">
             </div>
-        
+
         </div>
         <div class="image-item">
             <div class="image">
                 <img src="images/bg/slider02.jpg" alt="">
             </div>
-         
+
         </div>
         <div class="image-item">
             <div class="image">
                 <img src="images/bg/slider03.jpg" alt="">
             </div>
-         
+
         </div>
         <div class="image-item">
             <div class="image">
                 <img src="images/bg/slider04.jpg" alt="">
             </div>
-        
+
         </div>
     </div>
 </section>
