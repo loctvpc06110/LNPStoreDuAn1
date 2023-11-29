@@ -1,3 +1,20 @@
+<?php
+session_start();
+if (isset($_GET['login'])) {
+    $logout_user = $_GET['login'];
+} else {
+    $logout_user = '';
+}
+if ($logout_user == 'logout_user') {
+    if ($_SESSION['login_email_user']) {
+        unset($_SESSION['login_email_user']);
+        echo "<script>document.location='index.php?page=login';</script>";
+    } else {
+        unset($_SESSION['login_email_admin']);
+        echo "<script>document.location='index.php?page=login';</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,20 +25,18 @@
     <title>NLP Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
-    />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="site/contents/css/style.css">
-    
+
 </head>
+
 <body>
     <?php include('site/includes/_header.php'); ?>
 
     <?php
     include('admin/includes/pdo.php');
     include('admin/products/product.php');
+    include('admin/users/user.php');
 
     if (isset($_GET["page"])) {
         $url = $_GET["page"];
@@ -30,7 +45,7 @@
     }
 
     switch ($url) {
-        case 'home':    
+        case 'home':
             include("site/includes/home.php");
             break;
         case 'shop':
@@ -63,53 +78,46 @@
         case 'detail':
             include("site/includes/dtlproduct.php");
             break;
-        case 'info':
+        case 'infouser':
             include("site/includes/info.php");
             break;
+        case 'admin':
+            echo "<script>document.location='admin/index.php';</script>";
     }
     ?>
 
     <?php include('site/includes/_footer.php'); ?>
 
-   
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-1.11.0.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-    ></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     <script src="site/contents/js/menu.js"></script>
     <script src="site/contents/js/slickSlider.js"></script>
 
-    <!-- <script>
-    var mainImg = document.getElementById('mainImg');
-    var smallImg = document.getElementsByClassName('smallImg');
+    <script>
+        var mainImg = document.getElementById('mainImg');
+        var smallImg = document.getElementsByClassName('smallImg');
 
-    smallImg[0].onclick = function() {
+        smallImg[0].onclick = function() {
             mainImg.src = smallImg[0].src;
-    }
-    smallImg[1].onclick = function() {
+        }
+        smallImg[1].onclick = function() {
             mainImg.src = smallImg[1].src;
-    }
-    smallImg[2].onclick = function() {
+        }
+        smallImg[2].onclick = function() {
             mainImg.src = smallImg[2].src;
-    }
-    smallImg[3].onclick = function() {
+        }
+        smallImg[3].onclick = function() {
             mainImg.src = smallImg[3].src;
-    }
-    </script> -->
+        }
+    </script>
 </body>
 
 </html>
