@@ -78,7 +78,13 @@ class Product
     {
         $db = new connect();
         $query = "SELECT * FROM products INNER JOIN categories ON products.cate_id = categories.cate_id WHERE products.name LIKE '%$keyS%'";
-        $result = $db->pdo_execute($query);
+        $result = $db->pdo_query($query);
+        return  $result;
+    }
+
+    public function getDescImage($id) {
+        $db = new connect();
+        $query = "SELECT * FROM desc_image WHERE prod_id = '$id'";
         $result = $db->pdo_query($query);
         return  $result;
     }

@@ -1,7 +1,7 @@
 <section id="product1" class="section-p1">
     <?php
     $id = $_GET['id'];
-    $db = new Categories();
+    $db = new Category();
     $rows2 = $db->lishCategoriesName($id);
     ?>
     <h2>Điện Thoại <?= $rows2['cate_name'] ?></h2>
