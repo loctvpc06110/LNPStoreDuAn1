@@ -3,7 +3,7 @@
 </section>
 
 <?php
-$db = new Categories();
+$db = new Category();
 $rows2 = $db->lishCategories();
 
 foreach ($rows2 as $row2) { ?>

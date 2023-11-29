@@ -72,7 +72,7 @@
 
                     include('includes/pdo.php');
                     include('products/product.php');
-                    include('catrgories/category.php');
+                    include('categories/category.php');
                     include('users/user.php');
                     include('comments/comment.php');
 
@@ -99,16 +99,16 @@
                             include('products/remove.php');
                             break;
                         case "listCategories":
-                            include('catrgories/list.php');
+                            include('categories/list.php');
                             break;
                         case "addCate":
-                            include('catrgories/add.php');
+                            include('categories/add.php');
                             break;
                         case "editCate":
-                            include('catrgories/edit.php');
+                            include('categories/edit.php');
                             break;
                         case "removeCate":
-                            include('catrgories/remove.php');
+                            include('categories/remove.php');
                             break;
                         case "listUsers":
                             include('users/list.php');
