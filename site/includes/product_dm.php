@@ -1,21 +1,16 @@
-<section id="hero">
-
-</section>
-<!--End Hero -->
-
-<?php include('_feature.php'); ?>
-<!--End Feature -->
-
 <section id="product1" class="section-p1">
-
-    <h2>Sản Phẩm Mới Nhất</h2>
-    <p>Bộ sưu tập Thiết kế hiện đại mới</p>
+    <?php
+    $id = $_GET['id'];
+    $db = new Categories();
+    $rows2 = $db->lishCategoriesName($id);
+    ?>
+    <h2>Điện Thoại <?= $rows2['cate_name'] ?></h2>
 
     <div class="pro-container">
-
         <?php
+        $id_pro = $_GET['id'];
         $db = new Product();
-        $rows1 = $db->lishProductNew();
+        $rows1 = $db-> lishProductDM($id_pro);
 
         foreach ($rows1 as $row1) { ?>
 
@@ -45,49 +40,40 @@
             </a>
 
         <?php } ?>
-
     </div>
 
-</section>
-<!--End Featured Product -->
+    <section id="banner" class="section-m1">
+        <div class="image-slider">
+            <div class="image-item" id="data_depute">
+                <div class="image">
+                    <img src="images/bg/slider01.jpg" alt="">
+                </div>
 
-<section id="banner" class="section-m1">
-    <div class="image-slider">
-        <div class="image-item" id="data_depute">
-            <div class="image">
-                <img src="images/bg/slider01.jpg" alt="">
             </div>
+            <div class="image-item">
+                <div class="image">
+                    <img src="images/bg/slider02.jpg" alt="">
+                </div>
 
-        </div>
-        <div class="image-item">
-            <div class="image">
-                <img src="images/bg/slider02.jpg" alt="">
             </div>
+            <div class="image-item">
+                <div class="image">
+                    <img src="images/bg/slider03.jpg" alt="">
+                </div>
 
-        </div>
-        <div class="image-item">
-            <div class="image">
-                <img src="images/bg/slider03.jpg" alt="">
             </div>
+            <div class="image-item">
+                <div class="image">
+                    <img src="images/bg/slider04.jpg" alt="">
+                </div>
 
-        </div>
-        <div class="image-item">
-            <div class="image">
-                <img src="images/bg/slider04.jpg" alt="">
             </div>
-
         </div>
+    </section>
+
     </div>
-</section>
-<!-- End Banner primary -->
-
-<section id="product1" class="section-p1">
-
-    <h2>Sản Phẩm Khuyến Mãi</h2>
-    <p>Những Sản Phẩm Hiện Đang Được Khuyến Mãi Nhiều Nhất</p>
-
+    <h2>Sản Phẩm Được Gợi Ý</h2>
     <div class="pro-container">
-
         <?php
         $db = new Product();
         $rows1 = $db->getListDetail();
@@ -124,35 +110,3 @@
     </div>
 
 </section>
-<!-- End Product New Arrivals -->
-
-<section id="sm-banner" class="section-p1">
-    <div class="banner-box">
-        <h4>Ưu đãi LNP Store</h4>
-        <h2>1 Đổi 1</h2>
-        <span>1 Đổi 1 trong vòng 7 ngày !</span>
-        <a href="?page=shop"><button class="white">Xem ngay</button></a>
-    </div>
-    <div class="banner-box banner-box2">
-        <h4>Khuyễn mãi cuối tháng</h4>
-        <h2>Big Sale</h2>
-        <span>Giảm giá 5-30% các sản phẩm tại LNP Store</span>
-        <a href="?page=shop"><button class="white">Xem ngay</button></a>
-    </div>
-</section>
-
-<section id="banner3">
-    <div class="banner-box">
-
-    </div>
-    <div class="banner-box banner-box2">
-
-    </div>
-    <div class="banner-box banner-box3">
-
-    </div>
-</section>
-<!-- End Banner scondary -->
-
-<?php include("_newsletter.php"); ?>
-<!--End news -->
