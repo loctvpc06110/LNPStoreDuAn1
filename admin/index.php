@@ -72,7 +72,7 @@
 
                     include('includes/pdo.php');
                     include('products/product.php');
-                    include('catrgories/category.php');
+                    include('categories/categories.php');
                     include('users/user.php');
                     include('comments/comment.php');
 
