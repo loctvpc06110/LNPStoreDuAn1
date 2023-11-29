@@ -6,14 +6,24 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'] ?? "";
     $user = new User();
     if ($email == "" || $password == "") {
-        $err .= "Bạn phải nhập thông tin đầy đủ";
+        $err = "Bạn phải nhập thông tin đầy đủ";
     } else {
         if ($user->checkUserCustomer($email, $password)) {
             $result = $user->userid($email, $password);
-            $_SESSION['login_email_user'] = $email;
-            echo "<script>document.location='index.php?page=home';</script>";
-        } else {
-            $err .= "Tài khoản hoặc mặt khẩu không chính xác";
+
+            $checkRole = $user->loginSite($email);
+        
+            if ($checkRole['role'] == "User"){
+                $_SESSION['login_email_user'] = $email;
+                echo "<script>document.location='index.php?page=home';</script>";
+            }
+            else if ($checkRole['role'] == "Admin"){
+                $_SESSION['login_email_admin'] = $email;
+                echo "<script>document.location='index.php?page=home';</script>";
+            }
+            else {
+            $err = "Tài khoản hoặc mặt khẩu không chính xác";
+        } 
         }
     }
 }
@@ -25,12 +35,12 @@ if (isset($_POST['login'])) {
         </div>
         <form method="post">
             <div class="form-group">
-                <input type="password" required id="_password" name="password">
-                <span>Tài khoản</span>
+                <input type="email" id="_email" name="email">
+                <span>Email</span>
                 <i></i>
             </div>
             <div class="form-group">
-                <input type="password" required id="_password" name="password">
+                <input type="password" id="_password" name="password">
                 <span>Mật khẩu</span>
                 <i></i>
             </div>
