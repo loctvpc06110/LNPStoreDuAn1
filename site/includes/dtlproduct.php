@@ -1,8 +1,15 @@
+<?php 
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $db = new Product();
+        $row = $db->getListDetailByID($id);
+    }
+?>
 <section id="prodetails" class="section-p1">
 
     <div class="single-pro-image">
         <div class="main-img">
-            <img src="images/prod/prod01.jpg" width="100%" id="mainImg">
+            <img src="images/prod/<?= $row['image']?>" width="100%" id="mainImg">
         </div>
         <div class="small-img-group">
             <div class="small-img-col">
@@ -23,10 +30,10 @@
         <form method="post" action="?page=cart">
 
             <h6 id="categoryPro">
-                Sam Sung
+                <?= $row['cate_name']?>
             </h6>
             <h4 id="namePro">
-                Sam Sung J5
+                <?= $row['cate_name']?>
             </h4>
             <h2 id="pricePro">
                 22.000.000 vnđ
