@@ -33,53 +33,53 @@
                 <?= $row['cate_name']?>
             </h6>
             <h4 id="namePro">
-                <?= $row['cate_name']?>
+                <?= $row['prod_name']?>
             </h4>
             <h2 id="pricePro">
-                22.000.000 vnđ
+            <?= $row['price']?> VNĐ
             </h2>
 
             <input name="quantity_cart" type="number" value="1">
-            <button type="submit" name="add_cart" class="normal">Add To Cart</button>
-            <h4>Product Details</h4>
+            <button type="submit" name="add_cart" class="normal">Thêm Giỏ Hàng</button>
+            <h4>Thông Số Điện Thoại</h4>
             <span id="describePro">
                 <table class="table table-striped">
                     <tbody>
                         <tr>
                             <th scope="row">Màn hình:</th>
-                            <td>@mdo</td>
+                            <td><?= $row['screen']?></td>
                         </tr>
                         <tr>
                             <th scope="row">Hệ điều hành:</th>
-                            <td>@fat</td>
+                            <td><?= $row['os']?></td>
                         </tr>
                         <tr>
                             <th scope="row">Camera sau:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['camera']?></td>
                         </tr>
                         <tr>
                             <th scope="row">Camera trước:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['camera_front']?></td>
                         </tr>
                         <tr>
                             <th scope="row">Chip:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['chip']?></td>
                         </tr>
                         <tr>
                             <th scope="row">RAM:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['ram']?>@twitter</td>
                         </tr>
                         <tr>
                             <th scope="row">Dung lượng lưu trữ:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['rom']?></td>
                         </tr>
                         <tr>
                             <th scope="row">SIM:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['sim']?></td>
                         </tr>
                         <tr>
                             <th scope="row">Pin, Sạc:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['battery']?></td>
                         </tr>
                     </tbody>
                 </table>

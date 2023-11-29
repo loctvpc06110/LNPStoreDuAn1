@@ -41,9 +41,8 @@ class Product {
         INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
         INNER JOIN categories ON products.cate_id = categories.cate_id
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
-        WHERE products.prod_id = $id
-        GROUP BY id_prod;";
-        $result = $db->pdo_query($query);
+        WHERE products.prod_id = $id";
+        $result = $db->pdo_query_one($query);
         return $result;
     }
 
