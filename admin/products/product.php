@@ -13,20 +13,23 @@ class Product
     var $promoID = null;
     var $cateID = null;
 
-   
-    public function getListDetail() {
+
+    public function getListDetail()
+    {
         $db = new connect();
-        $query = "SELECT * FROM products INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id"; 
+        $query = "SELECT * FROM products INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id";
         $result = $db->pdo_query($query);
         return $result;
     }
-    public function lishProductNew() {
+    public function lishProductNew()
+    {
         $db = new connect();
         $query = "SELECT *, products.prod_id AS ID_prod FROM products INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id ORDER BY ID_prod desc limit 0,8";
         $result = $db->pdo_query($query);
         return $result;
     }
-    public function lishProductDM($id_pro) {
+    public function lishProductDM($id_pro)
+    {
         $db = new connect();
         $query = "SELECT * FROM categories 
         INNER JOIN products ON categories.cate_id = products.cate_id
@@ -35,7 +38,8 @@ class Product
         $result = $db->pdo_query($query);
         return $result;
     }
-    public function getList() {
+    public function getList()
+    {
         $db = new connect();
         $query = "SELECT  products.prod_id AS prod_id, products.status AS prod_status, products.image AS image, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name  
         FROM products 
@@ -44,12 +48,13 @@ class Product
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
         INNER JOIN desc_image ON products.prod_id = desc_image.prod_id
         GROUP BY prod_id;";
-        
+
         $result = $db->pdo_query($query);
         return $result;
     }
 
-    public function getListDetailByID($id){
+    public function getListDetailByID($id)
+    {
         $db = new connect();
         $query = "SELECT *, products.prod_id AS id_prod, products.status AS prod_status, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name  
         FROM products 
@@ -61,6 +66,21 @@ class Product
         $result = $db->pdo_query($query);
         return $result;
     }
+    public function checksearch($keyS)
+    {
+        $db = new connect();
+        $sql = "SELECT count(*) FROM products WHERE products.name LIKE '%$keyS%'";
+        $result = $db->pdo_execute($sql);
+        $number_of_rows = $result->fetchColumn();
+        return  $number_of_rows;
+    }
 
+    public function getByKey($keyS)
+    {
+        $db = new connect();
+        $query = "SELECT * FROM products INNER JOIN categories ON products.cate_id = categories.cate_id WHERE products.name LIKE '%$keyS%'";
+        $result = $db->pdo_execute($query);
+        $result = $db->pdo_query($query);
+        return  $result;
+    }
 }
-?>
