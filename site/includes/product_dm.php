@@ -8,8 +8,9 @@
 
     <div class="pro-container">
         <?php
+        $id_pro = $_GET['id'];
         $db = new Product();
-        $rows1 = $db->getListDetail();
+        $rows1 = $db->lishProductDM($id_pro);
 
         foreach ($rows1 as $row1) { ?>
 
