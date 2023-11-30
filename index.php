@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (isset($_GET['login'])) {
     $logout_user = $_GET['login'];
 } else {
@@ -46,50 +47,50 @@ if ($logout_user == 'logout_user') {
         $url = "home";
     }
 
-    switch ($url) {
-        case 'home':
-            include("site/includes/home.php");
-            break;
-        case 'shop':
-            include("site/includes/shop.php");
-            break;
-        case 'blog':
-            include("site/includes/blog.php");
-            break;
-        case 'about':
-            include("site/includes/about.php");
-            break;
-        case 'contact':
-            include("site/includes/contact.php");
-            break;
-        case 'login':
-            include("site/includes/login.php");
-            break;
-        case 'signup':
-            include("site/includes/signup.php");
-            break;
-        case 'cart':
-            include("site/includes/cart.php");
-            break;
-        case 'forgot':
-            include("site/includes/forgot.php");
-            break;
-        case 'search':
-            include("site/includes/search.php");
-            break;
-        case 'detail':
-            include("site/includes/dtlproduct.php");
-            break;
-        case 'infouser':
-            include("site/includes/info.php");
-            break;
-        case 'product_dm':
-            include("site/includes/product_dm.php");
-            break;
-        case 'admin':
-            echo "<script>document.location='admin/index.php';</script>";
-    }
-    ?>
+        switch ($url) {
+            case 'home':    
+                include("site/includes/home.php");
+                break;
+            case 'shop':
+                include("site/includes/shop.php");
+                break;
+            case 'blog':
+                include("site/includes/blog.php");
+                break;
+            case 'about':
+                include("site/includes/about.php");
+                break;
+            case 'contact':
+                include("site/includes/contact.php");
+                break;
+            case 'login':
+                include("site/includes/login.php");
+                break;
+            case 'signup':
+                include("site/includes/signup.php");
+                break;
+            case 'cart':
+                include("site/includes/cart.php");
+                break;
+            case 'forgot':
+                include("site/includes/forgot.php");
+                break;
+            case 'search':
+                include("site/includes/search.php");
+                break;
+            case 'detail':
+                include("site/includes/dtlproduct.php");
+                break;
+            case 'infouser':
+                include("site/includes/info.php");
+                break;
+            case 'product_dm':
+                include("site/includes/product_dm.php");
+                break;
+            case 'admin':
+                echo "<script>document.location='admin/index.php';</script>";
+        }
+        ?>
 
     <?php include('site/includes/_footer.php'); ?>
 

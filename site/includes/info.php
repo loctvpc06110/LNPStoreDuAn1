@@ -91,7 +91,7 @@ if (isset($_POST["changePW"])) {
 
         </div>
         <div class="col-4" style="border: 1px solid lightgray; padding: 25px 20px; border-radius: 20px;">
-            <h2>Đổi mặt khẩu</h2>
+            <h2>Đổi mật khẩu</h2>
             <form method="post">
                 <div class="form-group">
                     <label for="">Nhập mật khẩu cũ</label><br>

@@ -2,7 +2,7 @@
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $data = new Category();
+    $data = new Categories();
     $row = $data->getByID($id);
 
     if (isset($_POST['editCate'])) {

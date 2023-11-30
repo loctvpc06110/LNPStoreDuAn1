@@ -294,10 +294,12 @@ body {
     transition: 0.2s ease;
     position: relative;
     margin-left: 30px;
+    border-radius: 10px;
 }
 
 #product1 .pro:hover {
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
 }
 
 #product1 .pro img {
@@ -1245,6 +1247,32 @@ footer a:hover {
     border-radius: 4px;
 }
 
+#logo-brand {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#logo-brand a img {
+    text-decoration: none;
+    padding-left: -20px;
+}
+
+#logo-brand a img:hover {
+    opacity: 0.5;
+    transform: scale(1.1);
+}
+
+#price-menu {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#price-menu a {
+    color: #818181;
+    text-decoration: none;
+}
 /* Start Media Query ---------------------------------------------------------------------------------------------------------------------------*/
 @media (max-width:799px) {
     .section-p1 {
