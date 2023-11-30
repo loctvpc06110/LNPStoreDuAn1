@@ -7,6 +7,7 @@ if (isset($_GET['id'])) {
     $rows_img = $db->getDescImage($id);
 }
 ?>
+
 <section id="prodetails" class="section-p1">
 
     <div class="single-pro-image">
@@ -39,8 +40,12 @@ if (isset($_GET['id'])) {
                 <?= $row['price'] ?> VNĐ
             </h2>
 
-            <input name="quantity_cart" type="number" value="1">
+            <input name="prod_quantity" type="number" value="1">
+            <input type="hidden" name="prod_price" value="<?= $row['price'] ?>">
+            <input type="hidden" name="prod_id" value="<?= $row['id_prod'] ?>">
+
             <button type="submit" name="add_cart" class="normal">Thêm Giỏ Hàng</button>
+        </form>
             <h4>Thông Số Điện Thoại</h4>
             <span id="describePro">
                 <table class="table table-striped">
@@ -85,7 +90,7 @@ if (isset($_GET['id'])) {
                 </table>
             </span>
 
-        </form>
+        
     </div>
 
 </section>
@@ -131,17 +136,25 @@ if (isset($_SESSION['login_email_user'])) {
     </div>
     <div class="see-comment">
         <h3>Xem bình luận</h3>
-        <div class="comment-list">
+        <div class="comment-list">         
         <?php
         $rows_cmt = $dbCmt->showCommentByProdID($id);
         foreach ($rows_cmt as $row_cmt) { ?>
             <div class="form-group">
-                <label for="comment" style="color: blue;">
+                <label for="comment">
                     <?php 
                         if ($row_cmt['name'] != ''){
                             echo $row_cmt['name'];
+                            echo " / ";
+                            $lastcmt = $dbCmt->getLastComment($row['id_prod']);
+                            $formattedDate = date("Y-m-d", strtotime($lastcmt['lastCmt']));
+                            echo $formattedDate;
                         }else{
-                            $row_cmt['email'];
+                            echo $row_cmt['email'];
+                            echo " / ";
+                            $lastcmt = $dbCmt->getLastComment($row['id_prod']);
+                            $formattedDate = date("Y-m-d", strtotime($lastcmt['lastCmt']));
+                            echo $formattedDate;
                         }
                     ?>
                 </label>

@@ -183,7 +183,6 @@
 
         <?php
         $db_cmt = new Comment();
-
         ?>
         const ctx = document.getElementById('myChart');
         new Chart(ctx, {

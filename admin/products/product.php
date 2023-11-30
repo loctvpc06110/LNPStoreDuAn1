@@ -88,4 +88,47 @@ class Product
         $result = $db->pdo_query($query);
         return  $result;
     }
+
+    public function addCart($prod_id, $prod_price, $prod_quantity){
+        $db = new connect();
+        $query = "INSERT INTO carts(prod_id, price, quantity) VALUES ('$prod_id', '$prod_price', '$prod_quantity')"; 
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+
+    public function getListCart(){
+        $db = new connect();
+        $query = "SELECT * FROM carts";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+
+    public function checkProdCarts($prod_id){
+        $db = new connect();
+        $sql = "SELECT count(*) FROM carts WHERE prod_id = '$prod_id'"; 
+        $result = $db->pdo_execute($sql);
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows;
+    }
+
+    public function getCartByProdID($prod_id){
+        $db = new connect();
+        $query = "SELECT * FROM carts WHERE prod_id = '$prod_id'";
+        $result = $db->pdo_query_one($query);
+        return $result;
+    }
+
+    public function upQuantityCart($quantity, $prod_id) {
+        $db = new connect();
+        $query = "UPDATE carts SET quantity = '$quantity' WHERE prod_id = '$prod_id'";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+    
+    public function deleteCart($cart_id) {
+        $db = new connect();
+        $query = "DELETE FROM carts WHERE cart_id = '$cart_id'";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
 }

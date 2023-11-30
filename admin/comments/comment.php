@@ -16,14 +16,14 @@
 
         public function getProductHaveComment() {
             $db = new connect();
-            $query = "SELECT prod_id, products.prd_name FROM comments INNER JOIN products ON comments.prod_id = products.prod_id GROUP BY prod_id";
+            $query = "SELECT *, products.prod_id AS id_prod FROM comments INNER JOIN products ON comments.prod_id = products.prod_id GROUP BY id_prod";
             $result = $db->pdo_query($query);
             return $result;
         }
 
         public function getDetail($id) {
             $db = new connect();
-            $query = "SELECT * FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE prod_id = $id";
+            $query = "SELECT *, comments.status AS status_cmt FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE prod_id = $id";
             $result = $db->pdo_query($query);
             return $result;
         }
@@ -70,7 +70,20 @@
             $number_of_rows = $result->fetchColumn(); 
             return $number_of_rows;
         }
+
+        public function hiddenCmt($cmtID){
+            $db = new connect();
+            $query = "UPDATE comments SET status = 'Ẩn' WHERE cmt_id = '$cmtID'";
+            $result = $db->pdo_execute($query);
+        return $result;
+        }
         
+        public function visibleCmt($cmtID){
+            $db = new connect();
+            $query = "UPDATE comments SET status = 'Hiện' WHERE cmt_id = '$cmtID'";
+            $result = $db->pdo_execute($query);
+        return $result;
+        }
     }
     
 ?>

@@ -4,13 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b414c5b0-2404-4f69-aa82-364c9a3c8a8b" name="Changes" comment="NO1 - upload ảnh" />
+    <list default="true" id="b414c5b0-2404-4f69-aa82-364c9a3c8a8b" name="Changes" comment="NO1 - upload ảnh">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/comments/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/comments/comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/comments/detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/comments/detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/comments/list.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/comments/list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/includes/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/includes/cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/includes/dtlproduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/includes/dtlproduct.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/PHPMailer-master/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
@@ -66,21 +75,6 @@
       <recent name="D:\Apps\xampp\htdocs\LNPStoreDuAn1\images" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="LNPStoreDuAn1" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="LNPStoreDuAn1" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -94,6 +88,7 @@
       <workItem from="1700636706895" duration="664000" />
       <workItem from="1700715331019" duration="75000" />
       <workItem from="1700794475353" duration="2000" />
+      <workItem from="1701302460151" duration="169000" />
     </task>
     <task id="LOCAL-00001" summary="NO1 - upload ảnh">
       <option name="closed" value="true" />

@@ -1,6 +1,40 @@
-<section id="page-header" class="cart-header">
+<?php
+$db = new Product();
+if (isset($_POST['add_cart'])) {
+    $prod_price = $_POST['prod_price'];
+    $prod_id = $_POST['prod_id'];
+    $prod_quantity = $_POST['prod_quantity'];
+    
 
-   
+    $count = $db->checkProdCarts($prod_id);
+    if($count > 0){
+        $fixCart = $db->getCartByProdID($prod_id);
+        $quantity_cart = $prod_quantity + $fixCart['quantity'];
+        $upCart = $db->upQuantityCart($quantity_cart, $prod_id);
+    }
+    else{
+        $addToCart = $db->addCart($prod_id, $prod_price, $prod_quantity);
+    }
+} else if (isset($_POST['upd_cart'])){
+
+    for($i = 0; $i<count($_POST['product_id']); $i++){
+        $product_id = $_POST['product_id'][$i];
+        $quantity = $_POST['quantity'][$i];
+        $upCart = $db->upQuantityCart($quantity, $product_id);
+    }
+
+    $product_id = $_POST['product_id'];
+
+}
+else if (isset($_GET['delete'])){
+    $id = $_GET['delete'];
+    $deleCart = $db->deleteCart($id);
+}
+
+?>
+
+
+<section id="page-header" class="cart-header">
 
 </section>
 
@@ -10,102 +44,101 @@
         <table width="100%">
             <thead>
                 <tr>
-                    <td>Remove</td>
-                    <td>Image</td>
-                    <td>Product</td>
+                    <td>Xóa</td>
+                    <td>Ảnh</td>
+                    <td>Sản Phẩm</td>
                     <td>Rom / Ram</td>
-                    <td>Price</td>
-                    <td>Quantity</td>
-                    <td>Subtotal</td>
+                    <td>Giá</td>
+                    <td>Số Lượng</td>
+                    <td>Tổng Tiền</td>
                 </tr>
             </thead>
 
-                <tbody>
+            <tbody>
+                <?php
+                $total = 0;
+                $rowsCart = $db->getListCart();
+                foreach ($rowsCart as $rowCart) {
+                    $rowProd = $db->getListDetailByID($rowCart['prod_id']);
+                    $subtotal = $rowProd['price'] * $rowCart['quantity'];
+                    $total += $subtotal;
+                ?>
                     <tr>
-                        <td><a href="?page=cart&delete"><i
+                        <td><a href="?page=cart&delete=<?= $rowCart['cart_id']?>"><i
                                     class="fa-regular fa-circle-xmark"></i></a></td>
-                        <td><img src="images/prod/prod01.jpg" alt=""></td>
+                        <td><img src="images/prod/<?= $rowProd['image']?>" alt=""></td>
                         <td>
-                            Shirt - 01
+                            <?= $rowProd['prod_name']?>
                         </td>
                         <td>
-                            256GB / 8GB
+                        <?= $rowProd['ram']?> / <?= $rowProd['rom']?>
                         </td>
                         <td>
-                            10000000 VNĐ
+                        <?= $rowProd['price']?> VNĐ
                         </td>
                         <td>
-                            <input type="number" min="1" name="quantity[]" value="1">
-                           
+                            <input type="number" min="1" name="quantity[]" value="<?= $rowCart['quantity']?>">
+                            <input type="hidden" name="product_id[]" value="<?= $rowCart['prod_id']?>">
                         </td>
-                        <td>$
-                            10
+                        <td>
+                            <?= $subtotal?> VNĐ 
                         </td>
                     </tr>
-                </tbody>
+                <?php } ?>
+
+            </tbody>
 
         </table>
 
 </section>
 
 <section id="cart-add" class="section-p1">
-    <div id="coupon">
-        <h3>Apply coupon</h3>
-        <div>
-            <input type="text" placeholder="Enter Your Coupon">
-            <button class="normal">Apply</button>
-        </div>
-    </div>
-
     <div id="subtotal">
-        <h3>Cart Totals</h3>
+        <h3>Tổng Tiền Cần Thanh Toán</h3>
 
         <table>
             <tr>
-                <td>Cart Subtotal</td>
-                <td>$
-                    10
+                <td>Tổng Giỏ Hàng</td>
+                <td>
+                    <?= $total?> VNĐ
                 </td>
             </tr>
             <tr>
-                <td>Shipping</td>
-                <td>Free</td>
+                <td>Phí Vận Chuyển</td>
+                <td>Miễn Phí</td>
             </tr>
             <tr>
-                <td><strong>Total</strong></td>
-                <td><strong>$
-                        10
+                <td><strong>Tổng Tiên Cần Thanh Toán</strong></td>
+                <td><strong>
+                <?= $total?> VNĐ
                     </strong></td>
             </tr>
             <tr>
                 <form method="post" action="">
-                    <td colspan="2" align="center"><button type="submit" name="upd_cart" class="normal">update</button>
+                    <td colspan="2" align="center"><button type="submit" name="upd_cart" class="normal">Cập Nhập Giỏ Hàng</button>
                     </td>
                 </form>
             </tr>
         </table>
-
+    </div>
+    <div id="checkout">
         <h3>Checkout</h3>
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="">Name: </label>
-                <input type="text" name="customer_name" class="form-control" required
-                    >
+                <label for="">Tên: </label>
+                <input type="text" name="customer_name" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="">Email: </label>
-                <input type="email" name="customer_email" class="form-control" required
-                    >
+                <input type="email" name="customer_email" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="">Phone: </label>
-                <input type="text" name="customer_phone" class="form-control" required
-                    >
+                <label for="">Số điện thoại: </label>
+                <input type="text" name="customer_phone" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="">Address: </label>
-                <input type="text" name="customer_address" class="form-control" required
-                    >
+                <label for="">Địa chỉ nhận hàng: </label>
+                <input type="text" name="customer_address" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="">Payment: </label>

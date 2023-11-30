@@ -1014,16 +1014,16 @@ footer a:hover {
     justify-content: space-between;
 }
 
-#coupon {
+#subtotal {
     width: 50%;
     margin-bottom: 30px;
 }
 
-#coupon h3,
 #subtotal h3 {
     padding-bottom: 15px;
 }
 
+#checkout input,
 #coupon input {
     padding: 10px;
     outline: none;
@@ -1032,14 +1032,15 @@ footer a:hover {
     border: 1px solid #e2e9e1;
 }
 
-#coupon button,
+#checkout button,
 #subtotal button {
     background-color: var(--scondry--color);
     color: #fff;
     padding: 12px 20px;
 }
 
-#subtotal {
+#subtotal,
+#checkout {
     width: 50%;
     margin-bottom: 30px;
     border: 1px solid #e2e9e1;
