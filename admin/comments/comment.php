@@ -63,6 +63,7 @@
             $number_of_rows = $result->fetchColumn(); 
             return $number_of_rows;
         }
+        
         public function cmt_month($month){
             $db = new connect();
             $sql = "SELECT COUNT(`cmt_id`) AS number_cmt FROM `comments` WHERE month(create_at) = $month"; 

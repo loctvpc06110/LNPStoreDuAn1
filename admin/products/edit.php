@@ -1,8 +1,8 @@
 <?php 
     $id = $_GET['id'];
     $db = new Product();
-    $rowProd = $db->getByID($id);
-    $rowProdDtl = $db->getDetailProductByID($id);
+    // $rowProd = $db->getByID($id);
+    // $rowProdDtl = $db->getDetailProductByID($id);
 ?>
 
 <div class="container-fluid">
