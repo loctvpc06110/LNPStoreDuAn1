@@ -1,5 +1,5 @@
 <section id="hero">
-    
+
 </section>
 <!--End Hero -->
 
@@ -57,25 +57,25 @@
             <div class="image">
                 <img src="images/bg/slider01.jpg" alt="">
             </div>
-        
+
         </div>
         <div class="image-item">
             <div class="image">
                 <img src="images/bg/slider02.jpg" alt="">
             </div>
-         
+
         </div>
         <div class="image-item">
             <div class="image">
                 <img src="images/bg/slider03.jpg" alt="">
             </div>
-         
+
         </div>
         <div class="image-item">
             <div class="image">
                 <img src="images/bg/slider04.jpg" alt="">
             </div>
-        
+
         </div>
     </div>
 </section>

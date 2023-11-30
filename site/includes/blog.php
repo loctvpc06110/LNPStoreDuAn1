@@ -3,7 +3,7 @@
 </section>
 
 <section id="blog">
-    <h2>Tin Tức Cập Nhập</h2>
+    <h2>Tin Tức Cập Nhật</h2>
     <div class="blog-box">
         <div class="blog-img">
             <img src="images/bg/blog01.jpeg">

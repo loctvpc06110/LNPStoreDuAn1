@@ -58,5 +58,11 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
+    <!-- Nav Item - list user -->
+    <li class="nav-item">
+        <a class="nav-link" href="?page=nextPage">
+            <i class="fa-solid fa-repeat"></i>
+            <span>Trang User</span></a>
+    </li>
 
 </ul>

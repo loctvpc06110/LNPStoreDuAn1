@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (isset($_GET['login'])) {
     $logout_user = $_GET['login'];
 } else {
@@ -88,6 +89,8 @@ if ($logout_user == 'logout_user') {
             case 'product_dm':
                 include("site/includes/product_dm.php");
                 break;
+            case 'admin':
+                echo "<script>document.location='admin/index.php';</script>";
         }
         ?>
 

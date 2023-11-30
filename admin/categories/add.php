@@ -22,7 +22,7 @@
     if (isset($_POST['addCate'])) {
         $cateName = $_POST['cateName'];
         $status = $_POST['status'];
-        $db = new Category();
+        $db = new Categories();
         $addPro = $db->add($cateName, $status);
         echo "<script>document.location='index.php?page=listCategories';</script>";
     }

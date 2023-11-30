@@ -28,7 +28,7 @@
                 <tbody>
 
                     <?php
-                    $dblist = new Category();
+                    $dblist = new Categories();
                     $rows = $dblist->getList();
 
                     foreach ($rows as $row) { ?>
