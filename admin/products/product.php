@@ -24,7 +24,9 @@ class Product
     public function lishProductNew()
     {
         $db = new connect();
-        $query = "SELECT *, products.prod_id AS ID_prod FROM products INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id ORDER BY ID_prod desc limit 0,8";
+        $query = "SELECT *, products.prod_id AS ID_prod FROM products 
+        INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id 
+        ORDER BY ID_prod desc limit 0,8";
         $result = $db->pdo_query($query);
         return $result;
     }
@@ -78,9 +80,41 @@ class Product
     public function getByKey($keyS)
     {
         $db = new connect();
-        $query = "SELECT * FROM products INNER JOIN categories ON products.cate_id = categories.cate_id WHERE products.name LIKE '%$keyS%'";
+        $query = "SELECT *, products.prod_id AS id_prod, products.status AS prod_status, price, products.name AS prod_name, categories.name AS cate_name  
+        FROM products 
+        INNER JOIN categories ON products.cate_id = categories.cate_id
+        INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
+        WHERE products.name LIKE '%$keyS%'";
         $result = $db->pdo_execute($query);
         $result = $db->pdo_query($query);
         return  $result;
+    }
+    public function sumPro() 
+    {
+        $db = new connect();
+        $query = "SELECT COUNT(prod_id) AS sum_pro FROM products";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+    public function sumCate() 
+    {
+        $db = new connect();
+        $query = "SELECT COUNT(cate_id) AS sum_cate FROM categories";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+    public function sumUser() 
+    {
+        $db = new connect();
+        $query = "SELECT COUNT(user_id) AS sum_user FROM users";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+    public function sumComment() 
+    {
+        $db = new connect();
+        $query = "SELECT COUNT(cmt_id) AS sum_cmt FROM comments";
+        $result = $db->pdo_query($query);
+        return $result;
     }
 }
