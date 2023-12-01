@@ -51,7 +51,7 @@
 
         public function showCommentByProdID($prodID){
             $db = new connect();
-            $query = "SELECT * FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE prod_id = $prodID";
+            $query = "SELECT * FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE prod_id = $prodID AND comments.status = 'Hiện'";
             $result = $db->pdo_query($query);
             return $result;
         }
@@ -76,14 +76,21 @@
             $db = new connect();
             $query = "UPDATE comments SET status = 'Ẩn' WHERE cmt_id = '$cmtID'";
             $result = $db->pdo_execute($query);
-        return $result;
+            return $result;
         }
         
         public function visibleCmt($cmtID){
             $db = new connect();
             $query = "UPDATE comments SET status = 'Hiện' WHERE cmt_id = '$cmtID'";
             $result = $db->pdo_execute($query);
-        return $result;
+            return $result;
+        }
+
+        public function getCmtByID($cmtID) {
+            $db = new connect();
+            $query = "SELECT * FROM comments WhERE cmt_id = '$cmtID'";
+            $result = $db->pdo_query_one($query);
+            return $result;
         }
     }
     

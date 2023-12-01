@@ -40,7 +40,7 @@ if ($logout_user == 'logout_user') {
     include('admin/categories/category.php');
     include('admin/users/user.php');
     include('admin/comments/comment.php');
-
+    include('admin/questions/question.php');
     if (isset($_GET["page"])) {
         $url = $_GET["page"];
     } else {
