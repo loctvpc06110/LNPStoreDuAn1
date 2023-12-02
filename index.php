@@ -34,13 +34,14 @@ if ($logout_user == 'logout_user') {
 <body>
     <?php include('site/includes/_header.php'); ?>
 
-    <?php
-    include('admin/includes/pdo.php');
-    include('admin/products/product.php');
-    include('admin/categories/category.php');
-    include('admin/users/user.php');
-    include('admin/comments/comment.php');
-    include('admin/questions/question.php');
+        <?php
+       include('admin/includes/pdo.php');
+       include('admin/products/product.php');
+       include('admin/categories/category.php');
+       include('admin/users/user.php');
+       include('admin/comments/comment.php');
+       include('admin/questions/question.php');
+
     if (isset($_GET["page"])) {
         $url = $_GET["page"];
     } else {

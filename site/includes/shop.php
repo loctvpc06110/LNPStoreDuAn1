@@ -4,7 +4,7 @@
 <section id="logo-brand" class="section-p1">
 
 <?php
-$db = new Category();
+$db = new Categories();
 $rows2 = $db->lishCategories();
 
     foreach ($rows2 as $row2) { ?>
