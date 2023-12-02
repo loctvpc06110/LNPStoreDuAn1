@@ -72,7 +72,7 @@ if (isset($_GET['id'])) {
                         </tr>
                         <tr>
                             <th scope="row">RAM:</th>
-                            <td><?= $row['ram'] ?>@twitter</td>
+                            <td><?= $row['ram'] ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Dung lượng lưu trữ:</th>
