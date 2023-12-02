@@ -109,6 +109,27 @@ class User
         $result = $db->pdo_execute($query);
         return $result;
     }
+
+    public function lockUser($user_id){
+        $db = new connect();
+        $query = "UPDATE users SET status = 'Khóa' WHERE user_id = '$user_id'";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+
+    public function unLockUser($user_id){
+        $db = new connect();
+        $query = "UPDATE users SET status = 'Hoạt Động' WHERE user_id = '$user_id'";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+
+    public function getUserByID($user_id){
+        $db = new connect();
+        $select = "SELECT * FROM users WHERE user_id = '$user_id'";
+        $result = $db->pdo_query_one($select);
+        return $result;
+    }
 }
 
 ?>

@@ -1026,10 +1026,10 @@ footer a:hover {
 }
 
 #checkout input,
-#coupon input {
+#subtotal input {
     padding: 10px;
     outline: none;
-    width: 60%;
+    width: 100%;
     margin-right: 10px;
     border: 1px solid #e2e9e1;
 }
