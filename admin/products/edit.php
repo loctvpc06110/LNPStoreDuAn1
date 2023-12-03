@@ -34,15 +34,7 @@
         </div>
         <label>Khuyến mãi: </label>
         <select name="promoId" class="form-floating mb-3 mt-3" value="<?= $row['promo_name'] ?>">
-            <?php
-            $db = new Product();
-            $rows1 = $db->prodPromo();
 
-            foreach ($rows1 as $row1) { ?>
-
-                <option value=<?php echo $row1['promo_id'] ?>><?php echo $row1['promo_name'] ?></option>
-
-            <?php } ?>
         </select><br>
 
         <button tyle="submit" name="editCate" class="btn btn-primary">Sửa</button>
@@ -74,7 +66,5 @@ if (isset($_POST['editCate'])) {
 
     $db = new Product();
     $addProduct = $db->insertProd($name, $price, $image, $status, $promo_id, $cate_id);    
-}
-<?php 
-    
+}   
 ?>

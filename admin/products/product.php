@@ -83,7 +83,7 @@ class Product
         INNER JOIN categories ON products.cate_id = categories.cate_id
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
         WHERE products.prod_id = $id";
-        $result = $db->pdo_query_one($query);
+        $result = $db->pdo_query($query);
         return $result;
     }
     public function checksearch($keyS)
@@ -98,9 +98,88 @@ class Product
     public function getByKey($keyS)
     {
         $db = new connect();
-        $query = "SELECT * FROM products INNER JOIN categories ON products.cate_id = categories.cate_id WHERE products.name LIKE '%$keyS%'";
+        $query = "SELECT *, products.prod_id AS id_prod, products.status AS prod_status, price, products.name AS prod_name, categories.name AS cate_name  
+        FROM products 
+        INNER JOIN categories ON products.cate_id = categories.cate_id
+        INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
+        WHERE products.name LIKE '%$keyS%'";
         $result = $db->pdo_execute($query);
         $result = $db->pdo_query($query);
         return  $result;
+    }
+    public function sumPro() 
+    {
+        $db = new connect();
+        $query = "SELECT COUNT(prod_id) AS sum_pro FROM products";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+    public function sumCate() 
+    {
+        $db = new connect();
+        $query = "SELECT COUNT(cate_id) AS sum_cate FROM categories";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+    public function sumUser() 
+    {
+        $db = new connect();
+        $query = "SELECT COUNT(user_id) AS sum_user FROM users";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+    public function sumComment() 
+    {
+        $db = new connect();
+        $query = "SELECT COUNT(cmt_id) AS sum_cmt FROM comments";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+    public function prodPromo() 
+    {
+        $db = new connect();
+        $query = "SELECT products.prod_id AS prod_id, products.status AS prod_status, products.image AS image, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name, promotions.promo_id AS promo_id,
+        promotions.value AS promo_value
+        FROM products 
+        INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
+        INNER JOIN categories ON products.cate_id = categories.cate_id
+        INNER JOIN promotions ON products.promo_id = promotions.promo_id
+        INNER JOIN desc_image ON products.prod_id = desc_image.prod_id
+        WHERE value != '0' GROUP BY prod_id";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+    public function prodView() 
+    {
+        $db = new connect();
+        $query = "SELECT count(view), products.prod_id AS prod_id, products.status AS prod_status, products.image AS image, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name,
+        promotions.value AS promo_value
+        FROM products 
+        INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
+        INNER JOIN categories ON products.cate_id = categories.cate_id
+        INNER JOIN promotions ON products.promo_id = promotions.promo_id
+        INNER JOIN desc_image ON products.prod_id = desc_image.prod_id
+        GROUP BY prod_id";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+    public function getByName($name)
+    {
+        $db = new connect();
+        $query = "SELECT * FROM  products WHERE name = '$name'";
+        $result = $db->pdo_query_one($query);
+        return $result;
+    }
+    public function addImgs($prod_id, $image){
+        $db = new connect();
+        $query = "INSERT INTO desc_image(prod_id, image) values ('$prod_id', '$image')";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+    public function addDetail($prod_id, $screen, $os, $camera, $camera_front, $chip, $ram, $rom, $sim, $battery){
+        $db = new connect();
+        $query = "INSERT INTO detail_prod(prod_id, screen, os, camera, camera_front, chip, ram, rom, sim, battery) values ('$prod_id', '$screen', '$os', '$camera', '$camera_front', '$chip', '$ram', '$rom', '$sim', '$battery')";
+        $result = $db->pdo_execute($query);
+        return $result;
     }
 }

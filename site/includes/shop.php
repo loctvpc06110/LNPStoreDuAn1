@@ -2,16 +2,9 @@
 
 </section>
 <section id="logo-brand" class="section-p1">
-
-<<<<<<<<< Temporary merge branch 1
-<?php
-$db = new Categories();
-$rows2 = $db->lishCategories();
-=========
     <?php
     $db = new Categories();
     $rows2 = $db->lishCategories();
->>>>>>>>> Temporary merge branch 2
 
     foreach ($rows2 as $row2) { ?>
         <a href="?page=product_dm&id=<?php echo $row2['cate_id'] ?>">

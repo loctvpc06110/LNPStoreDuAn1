@@ -67,11 +67,8 @@ if ($logout == 'logout') {
                     <?php
 
                     include('includes/pdo.php');
-                    include('products/product.php');
-<<<<<<<<< Temporary merge branch 1
-        
+                    include('products/product.php');      
                     include('categories/categories.php');
->>>>>>>>> Temporary merge branch 2
                     include('users/user.php');
                     include('comments/comment.php');
                     include('questions/question.php');

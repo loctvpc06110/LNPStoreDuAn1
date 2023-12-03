@@ -37,7 +37,7 @@ if ($logout_user == 'logout_user') {
         <?php
         include('admin/includes/pdo.php');
         include('admin/products/product.php');
-        include('admin/categories/category.php');
+        include('admin/categories/categories.php');
         include('admin/users/user.php');
         include('admin/comments/comment.php');
         include('admin/questions/question.php');
