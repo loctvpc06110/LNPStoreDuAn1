@@ -126,7 +126,6 @@ else if (isset($_POST['checkout'])) {
             </tbody>
 
         </table>
-    </form>
 
 </section>
 
@@ -148,7 +147,7 @@ else if (isset($_POST['checkout'])) {
             <tr>
                 <td><strong>Tổng Tiên Cần Thanh Toán</strong></td>
                 <td><strong>
-                    <?= $db->format_price($total) ?> VNĐ
+                        <?= $db->format_price($total) ?> VNĐ
                     </strong></td>
             </tr>
             <tr>
