@@ -299,4 +299,25 @@ class Product
         $result = $db->pdo_query_one($query);
         return $result;
     }
+
+    public function getListLimit($start, $limit) {
+        $db = new connect();
+        $query = "SELECT *, products.prod_id AS prod_id, products.status AS prod_status, products.image AS image, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name  
+        FROM products 
+        INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
+        INNER JOIN categories ON products.cate_id = categories.cate_id
+        INNER JOIN promotions ON products.promo_id = promotions.promo_id
+        INNER JOIN desc_image ON products.prod_id = desc_image.prod_id
+        GROUP BY products.prod_id ASC LIMIT $start, $limit;";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+
+    public function number_rows(){
+        $db = new connect();
+        $sql = "SELECT count(*) FROM products"; 
+        $result = $db->pdo_execute($sql);
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows;
+    }
 }
