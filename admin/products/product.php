@@ -64,7 +64,12 @@ class Product
     public function getSimilar($cate_name, $prod_id)
     {
         $db = new connect();
-        $query = "SELECT * FROM products INNER JOIN categories ON products.cate_id = categories.cate_id WHERE categories.name = '$cate_name' AND prod_id != '$prod_id' LIMIT 4";
+        $query = "SELECT *, products.prod_id AS id_prod, products.status AS prod_status, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name  
+        FROM products 
+        INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
+        INNER JOIN categories ON products.cate_id = categories.cate_id
+        INNER JOIN promotions ON products.promo_id = promotions.promo_id
+        WHERE categories.name = '$cate_name' AND products.prod_id != '$prod_id' LIMIT 4";
         $result = $db->pdo_query($query);
         return $result;
     }

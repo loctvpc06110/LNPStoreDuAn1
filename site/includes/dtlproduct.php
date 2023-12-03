@@ -8,9 +8,6 @@ if (isset($_GET['id'])) {
     $row = $db->getListDetailByID($id);
     $rows_img = $db->getDescImage($id);
 }
-
-
-
 ?>
 
 <section id="prodetails" class="section-p1">
@@ -178,19 +175,19 @@ if (isset($_SESSION['login_email_user'])) {
     <p>Bộ sưu tập Thiết kế Morden mới</p>
     <div class="pro-container">
         <?php
-        $rows_sml = $db->getSimilar($row['cate_name'], $row['prod_id']);
+        $rows_sml = $db->getSimilar($row['cate_name'], $row['id_prod']);
 
         foreach ($rows_sml as $row_sml) { ?>
-            <a href="?page=detail&id=<?php echo $row_sml['prod_id']; ?>">
+            <a href="?page=detail&id=<?php echo $row_sml['id_prod']; ?>">
                 <div class="pro">
-                    <img src="images/prod/<?php echo $row['image'] ?>" alt="Image Shirt">
+                    <img src="images/prod/<?php echo $row_sml['image'] ?>" alt="Image Shirt">
                     <div class="des">
 
                         <span>
-                            <?php echo $row['rom'] ?> / <?php echo $row['ram'] ?>
+                            <?php echo $row_sml['rom'] ?> / <?php echo $row_sml['ram'] ?>
                         </span>
 
-                        <h5><?php echo $row['prod_name'] ?></h5>
+                        <h5><?php echo $row_sml['prod_name'] ?></h5>
                         <div class="star">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -198,7 +195,7 @@ if (isset($_SESSION['login_email_user'])) {
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <h4>$ <?php echo $row['price'] ?></h4>
+                        <h4>$ <?php echo $row_sml['price'] ?></h4>
                     </div>
                     <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
                 </div>
