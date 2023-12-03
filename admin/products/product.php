@@ -13,7 +13,6 @@ class Product
     var $promoID = null;
     var $cateID = null;
 
-
     public function getListDetail()
     {
         $db = new connect();
@@ -44,7 +43,7 @@ class Product
     public function getList()
     {
         $db = new connect();
-        $query = "SELECT  products.prod_id AS prod_id, products.status AS prod_status, products.image AS image, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name  
+        $query = "SELECT  products.prod_id AS prod_id, products.status AS prod_status, products.image AS image, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name, products.view AS view  
         FROM products 
         INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
         INNER JOIN categories ON products.cate_id = categories.cate_id
@@ -52,6 +51,20 @@ class Product
         INNER JOIN desc_image ON products.prod_id = desc_image.prod_id
         GROUP BY prod_id;";
 
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+    public function updateViews($id)
+    {
+        $db = new connect();
+        $query = "UPDATE products SET view = view + 1 WHERE products.prod_id = $id";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+    public function getSimilar($cate_name, $prod_id)
+    {
+        $db = new connect();
+        $query = "SELECT * FROM products INNER JOIN categories ON products.cate_id = categories.cate_id WHERE categories.name = '$cate_name' AND prod_id != '$prod_id' LIMIT 4";
         $result = $db->pdo_query($query);
         return $result;
     }
