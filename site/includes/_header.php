@@ -2,16 +2,16 @@
     <a href="?page=home"><img src="images/logoShop.png" class="logo"></a>
     <div>
         <ul id="navbar">
-            <?php
-            if (isset($_SESSION['login_email_admin'])) {
-                echo '<li><a href="?page=admin">Quản Lý</a></li>';
-            }
-            ?>
             <li><a href="?page=home">Trang Chủ</a></li>
             <li><a href="?page=shop">Cửa Hàng</a></li>
             <li><a href="?page=blog">Tin Tức</a></li>
             <li><a href="?page=about">Giới Thiệu</a></li>
             <li><a href="?page=contact">Liên Hệ</a></li>
+            <?php
+            if (isset($_SESSION['login_email_admin'])) {
+                echo '<li><a href="?page=admin">Quản Lý</a></li>';
+            }
+            ?>
             <li id="lg-search"><a class="openBtn" onclick="openSearch()"><i class="fa fa-search"></i></a></li>
             <?php
             if (isset($_SESSION['login_email_user'])) {

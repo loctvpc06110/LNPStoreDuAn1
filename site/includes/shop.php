@@ -1,13 +1,25 @@
 <section id="page-header">
-   
+
+</section>
+<section id="logo-brand" class="section-p1">
+
+<?php
+$db = new Category();
+$rows2 = $db->lishCategories();
+
+    foreach ($rows2 as $row2) { ?>
+        <a href="?page=product_dm&id=<?php echo $row2['cate_id'] ?>">
+            <img src="images/prod/<?php echo $row2['images'] ?>" alt="Image Shirt" width="60%">
+        </a>
+    <?php } ?>
 </section>
 
 <section id="product1" class="section-p1">
     <h2>Tất Cả Sản Phẩm</h2>
-
+    <p>Sản phẩm công nghệ hiện đại mới nhất</p>
     <div class="pro-container">
 
-    <?php
+        <?php
         $db = new Product();
         $rows1 = $db->getListDetail();
 

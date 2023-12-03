@@ -14,12 +14,21 @@ if (isset($_POST['login'])) {
             $checkRole = $user->loginSite($email);
         
             if ($checkRole['role'] == "User"){
-                $_SESSION['login_email_user'] = $email;
+                if($checkRole['status'] == "Hoạt Động"){
+                    $_SESSION['login_email_user'] = $email;
                 echo "<script>document.location='index.php?page=home';</script>";
+                }else{
+                    $err = "Tài khoản của bạn đã bị khóa !";
+                }         
             }
             else if ($checkRole['role'] == "Admin"){
-                $_SESSION['login_email_admin'] = $email;
+                if($checkRole['status'] == "Hoạt Động"){
+                    $_SESSION['login_email_admin'] = $email;
                 echo "<script>document.location='index.php?page=home';</script>";
+                }else{
+                    $err = "Tài khoản của bạn đã bị khóa !";
+                } 
+                
             }
             else {
             $err = "Tài khoản hoặc mặt khẩu không chính xác";

@@ -6,16 +6,16 @@
         $keyS = $_POST['txt_search'];
 
         if ($keyS == "") {
-            echo "<h3>Please enter your search</h3>";
+            echo "<h3>Bạn chưa nhập từ khóa tìm kiếm !!!</h3>";
         } else {
             $db = new Product();
             $count_s = $db->checksearch($keyS);
             $count = (int)$count_s;
 
-            if ($count = 0) {
-                echo "<h3>Can't find the keyword <b style='color: red;'>$keyS</b> you entered</h3>";
+            if ($count_s == 0) {
+                echo "<h3>Không tìm thấy từ khóa <b style='color: red;'>$keyS</b> mà bạn đã nhập</h3>";
             } else {
-                echo "<h3>Here's the keyword matching information: <b style='color: red;'>$keyS</b></h3>";
+                echo "<h3>Từ khóa tìm kiếm của bạn cho kết quả: <b style='color: red;'>$keyS</b></h3>";
     ?>
 
                 <div class="pro-container">
@@ -23,13 +23,16 @@
                     <?php
                     $rows = $db->getByKey($keyS);
                     foreach ($rows as $row) { ?>
-                        ?>
-                        <a href="?page=detail&id=<?php echo $row['products.pro_id']; ?>">
+                        <a href="?page=detail&id=<?php echo $row['prod_id']; ?>">
                             <div class="pro">
-                                <img src="../images/products/<?php echo $row['image']; ?>" alt="Image Shirt">
+                                <img src="images/prod/<?php echo $row['image'] ?>" alt="Image Shirt">
                                 <div class="des">
-                                    <span><?php echo $row['categories.name'] ?></span>
-                                    <h5><?php echo $row['products.name'] ?></h5>
+
+                                    <span>
+                                        <?php echo $row['rom'] ?> / <?php echo $row['ram'] ?>
+                                    </span>
+
+                                    <h5><?php echo $row['prod_name'] ?></h5>
                                     <div class="star">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>

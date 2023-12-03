@@ -15,7 +15,7 @@
 
         <?php
         $db = new Product();
-        $rows2 = $db->getListDetail();
+        $rows1 = $db->lishProductNew();
 
         foreach ($rows1 as $row1) { ?>
 

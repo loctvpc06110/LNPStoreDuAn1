@@ -294,10 +294,12 @@ body {
     transition: 0.2s ease;
     position: relative;
     margin-left: 30px;
+    border-radius: 10px;
 }
 
 #product1 .pro:hover {
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
 }
 
 #product1 .pro img {
@@ -1014,32 +1016,33 @@ footer a:hover {
     justify-content: space-between;
 }
 
-#coupon {
+#subtotal {
     width: 50%;
     margin-bottom: 30px;
 }
 
-#coupon h3,
 #subtotal h3 {
     padding-bottom: 15px;
 }
 
-#coupon input {
+#checkout input,
+#subtotal input {
     padding: 10px;
     outline: none;
-    width: 60%;
+    width: 100%;
     margin-right: 10px;
     border: 1px solid #e2e9e1;
 }
 
-#coupon button,
+#checkout button,
 #subtotal button {
     background-color: var(--scondry--color);
     color: #fff;
     padding: 12px 20px;
 }
 
-#subtotal {
+#subtotal,
+#checkout {
     width: 50%;
     margin-bottom: 30px;
     border: 1px solid #e2e9e1;
@@ -1244,6 +1247,32 @@ footer a:hover {
     border-radius: 4px;
 }
 
+#logo-brand {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#logo-brand a img {
+    text-decoration: none;
+    padding-left: -20px;
+}
+
+#logo-brand a img:hover {
+    opacity: 0.5;
+    transform: scale(1.1);
+}
+
+#price-menu {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#price-menu a {
+    color: #818181;
+    text-decoration: none;
+}
 /* Start Media Query ---------------------------------------------------------------------------------------------------------------------------*/
 @media (max-width:799px) {
     .section-p1 {

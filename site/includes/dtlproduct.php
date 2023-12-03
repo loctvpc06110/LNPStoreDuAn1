@@ -1,88 +1,129 @@
+<?php
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $db = new Product();
+    $dbCmt = new Comment();
+    $row = $db->getListDetailByID($id);
+    $rows_img = $db->getDescImage($id);
+}
+?>
+
 <section id="prodetails" class="section-p1">
 
     <div class="single-pro-image">
         <div class="main-img">
-            <img src="images/prod/prod01.jpg" width="100%" id="mainImg">
+            <img src="images/prod/<?= $row['image'] ?>" width="100%" id="mainImg">
         </div>
         <div class="small-img-group">
             <div class="small-img-col">
-                <img src="images/prod/prod01.jpg" width="100%" height="150px" class="smallImg">
+                <img src="images/prod/<?= $row['image'] ?>" width="100%" height="150px" class="smallImg">
             </div>
-            <div class="small-img-col">
-                <img src="images/prod/detail_prod01_1.jpg" width="100%" height="150px" class="smallImg">
-            </div>
-            <div class="small-img-col">
-                <img src="images/prod/detail_prod01_2.jpg" width="100%" height="150px" class="smallImg">
-            </div>
-            <div class="small-img-col">
-                <img src="images/prod/detail_prod01_3.jpg" width="100%" height="150px" class="smallImg">
-            </div>
+            <?php
+            foreach ($rows_img as $row_img) {
+            echo '<div class="small-img-col">
+                <img src="images/prod/'.$row_img["image"].'" width="100%" height="150px" class="smallImg">
+            </div>';
+            }
+            ?>  
         </div>
     </div>
     <div class="single-pro-details">
         <form method="post" action="?page=cart">
 
             <h6 id="categoryPro">
-                Sam Sung
+                <?= $row['cate_name'] ?>
             </h6>
             <h4 id="namePro">
-                Sam Sung J5
+                <?= $row['prod_name'] ?>
             </h4>
             <h2 id="pricePro">
-                22.000.000 vnđ
+                <?= $row['price'] ?> VNĐ
             </h2>
 
-            <input name="quantity_cart" type="number" value="1">
-            <button type="submit" name="add_cart" class="normal">Add To Cart</button>
-            <h4>Product Details</h4>
+            <input name="prod_quantity" type="number" value="1">
+            <input type="hidden" name="prod_price" value="<?= $row['price'] ?>">
+            <input type="hidden" name="prod_id" value="<?= $row['id_prod'] ?>">
+
+            <button type="submit" name="add_cart" class="normal">Thêm Giỏ Hàng</button>
+        </form>
+            <h4>Thông Số Điện Thoại</h4>
             <span id="describePro">
                 <table class="table table-striped">
                     <tbody>
                         <tr>
                             <th scope="row">Màn hình:</th>
-                            <td>@mdo</td>
+                            <td><?= $row['screen'] ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Hệ điều hành:</th>
-                            <td>@fat</td>
+                            <td><?= $row['os'] ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Camera sau:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['camera'] ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Camera trước:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['camera_front'] ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Chip:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['chip'] ?></td>
                         </tr>
                         <tr>
                             <th scope="row">RAM:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['ram'] ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Dung lượng lưu trữ:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['rom'] ?></td>
                         </tr>
                         <tr>
                             <th scope="row">SIM:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['sim'] ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Pin, Sạc:</th>
-                            <td>@twitter</td>
+                            <td><?= $row['battery'] ?></td>
                         </tr>
                     </tbody>
                 </table>
             </span>
 
-        </form>
+        
     </div>
 
 </section>
 
+
+<?php
+if (isset($_SESSION['login_email_user'])) {
+    $email = $_SESSION['login_email_user'];
+    $db_user = new User();
+    $row_user = $db_user->getByEmail($email);
+
+    if (isset($_POST['comment'])) {
+        $content = $_POST['content'];
+            $cmt = $db_comment->createComment($id, $content, $row_user['user_id']);
+            echo "<script>document.location='index.php?page=detail&id=".$id."'</script>";
+    }
+
+}else if(isset($_SESSION['login_email_admin'])){
+    $email = $_SESSION['login_email_admin'];
+    $db_user = new User();
+    $row_user = $db_user->getByEmail($email);
+
+    if (isset($_POST['comment'])) {
+        $content = $_POST['content'];
+            $cmt = $dbCmt->createComment($id, $content, $row_user['user_id']);
+            echo "<script>document.location='index.php?page=detail&id=".$id."'</script>";
+    }
+} else {
+    if (isset($_POST['comment'])) { 
+        echo "<script>document.location='index.php?page=login';</script>";
+    }
+}
+?>
 <section id="review" class="section-p1">
     <div class="comment">
         <h3>Viết đánh giá</h3>
@@ -90,20 +131,37 @@
             <div class="form-group">
                 <textarea class="form-control" rows="5" id="comment" name="content"></textarea>
             </div>
-            <button class="btn btn-primary" name="comment">Submit</button>
+            <button class="btn btn-primary" name="comment">Gửi</button>
         </form>
     </div>
     <div class="see-comment">
         <h3>Xem bình luận</h3>
-        <div class="comment-list">
-           
-                <div class="form-group">
-                    <label for="comment">Comment cre: 
-                    </label>
-                    <input class="form-control" type="button" value="">
-                </div>
-                <hr />
-           
+        <div class="comment-list">         
+        <?php
+        $rows_cmt = $dbCmt->showCommentByProdID($id);
+        foreach ($rows_cmt as $row_cmt) { ?>
+            <div class="form-group">
+                <label for="comment">
+                    <?php 
+                        if ($row_cmt['name'] != ''){
+                            echo $row_cmt['name'];
+                            echo " / ";
+                            $lastcmt = $dbCmt->getLastComment($row['id_prod']);
+                            $formattedDate = date("Y-m-d", strtotime($lastcmt['lastCmt']));
+                            echo $formattedDate;
+                        }else{
+                            echo $row_cmt['email'];
+                            echo " / ";
+                            $lastcmt = $dbCmt->getLastComment($row['id_prod']);
+                            $formattedDate = date("Y-m-d", strtotime($lastcmt['lastCmt']));
+                            echo $formattedDate;
+                        }
+                    ?>
+                </label>
+                <input class="form-control" type="button" value="<?= $row_cmt['content'] ?>" style="text-align: left;">
+            </div>
+            <hr />
+        <?php } ?>
         </div>
     </div>
 
@@ -117,7 +175,7 @@
 
     <div class="pro-container">
 
-    <?php
+        <?php
         $db = new Product();
         $rows1 = $db->getListDetail();
 
@@ -156,4 +214,3 @@
 
 <?php include("_newsletter.php"); ?>
 <!--End news -->
-

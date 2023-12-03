@@ -3,7 +3,7 @@ class connect
 {
     function pdo_get_connection()
     {
-        $dburl = "mysql:host=localhost;dbname=lnp_store;charset=utf8";
+        $dburl = "mysql:host=localhost;dbname=lnp_store1;charset=utf8";
         $username = 'root';
         $password = '';
         $conn = new PDO($dburl, $username, $password);
