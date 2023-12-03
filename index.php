@@ -41,6 +41,7 @@ if ($logout_user == 'logout_user') {
     include('admin/users/user.php');
     include('admin/comments/comment.php');
     include('admin/questions/question.php');
+    include('admin/orders/order.php');
     if (isset($_GET["page"])) {
         $url = $_GET["page"];
     } else {

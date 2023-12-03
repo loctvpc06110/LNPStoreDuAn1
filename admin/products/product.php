@@ -154,50 +154,6 @@ class Product
         return $number_of_rows;
     }
 
-    public function checkOrder($user_id){
-        $db = new connect();
-        $sql = "SELECT count(*) FROM bills WHERE user_id = '$user_id'"; 
-        $result = $db->pdo_execute($sql);
-        $number_of_rows = $result->fetchColumn(); 
-        return $number_of_rows;
-    }
-
-    public function getBillGrByCode(){
-        $db = new connect();
-        $query = "SELECT * FROM bills GROUP BY commodity_codes";
-        $result = $db->pdo_query($query);
-        return $result;
-    }
-
-    public function countProd($commodity_code){
-        $db = new connect();
-        $sql = "SELECT count(*) FROM bills WHERE commodity_codes = '$commodity_code'"; 
-        $result = $db->pdo_execute($sql);
-        $number_of_rows = $result->fetchColumn(); 
-        return $number_of_rows;
-    }
-
-    public function sumQuantity($commodity_code){
-        $db = new connect();
-        $query = "SELECT SUM(quantity) AS total_quantity FROM bills WHERE commodity_codes = '$commodity_code'";
-        $result = $db->pdo_query_one($query);
-        return $result;
-    }
-    
-    public function totalPrice($commodity_code){
-        $db = new connect();
-        $query = "SELECT SUM(quantity * price) AS total_price FROM bills WHERE commodity_codes = '$commodity_code'";
-        $result = $db->pdo_query_one($query);   
-        return $result;
-    }
-
-    public function cencalOrder($code) {
-        $db = new connect();
-        $query = "DELETE FROM bills WHERE commodity_codes= '$code'";
-        $result = $db->pdo_execute($query);
-        return $result;
-    }
-
     public function getListLimit($start, $limit) {
         $db = new connect();
         $query = "SELECT *, products.prod_id AS prod_id, products.status AS prod_status, products.image AS image, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name  
@@ -217,5 +173,17 @@ class Product
         $result = $db->pdo_execute($sql);
         $number_of_rows = $result->fetchColumn(); 
         return $number_of_rows;
+    }
+
+    public function format_price($price) {
+        $formatted_price = number_format($price, 0, ',', '.');
+        return $formatted_price;
+    }
+
+    public function getProdByID($prod_id) {
+        $db = new connect();
+        $query = "SELECT * FROM products WHERE prod_id = '$prod_id'";
+        $result = $db->pdo_query_one($query);
+        return $result;
     }
 }
