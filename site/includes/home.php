@@ -90,7 +90,7 @@
 
         <?php
         $db = new Product();
-        $rows1 = $db->getListDetail();
+        $rows1 = $db->prodPromo();
 
         foreach ($rows1 as $row1) { ?>
 
@@ -99,10 +99,10 @@
                     <img src="images/prod/<?php echo $row1['image'] ?>" alt="Image Shirt">
                     <div class="des">
                         <span>
-                            <?php echo $row1['rom'] ?> / <?php echo $row1['ram'] ?>
+                            <?php echo $row1['rom'] ?> / <?php echo $row1['ram'] ?> <?php echo $row1['promo_name'] ?>
                         </span>
                         <h5>
-                            <?php echo $row1['name'] ?>
+                            <?php echo $row1['prod_name'] ?>
                         </h5>
                         <div class="star">
                             <i class="fas fa-star"></i>
@@ -112,7 +112,7 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <h4>
-                            <?php echo $row1['price'] ?> VNĐ
+                            <?php echo $row1['price'] * $row1['promo_value'] / 100?> VNĐ
                         </h4>
                     </div>
                     <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
