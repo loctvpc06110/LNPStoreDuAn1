@@ -72,6 +72,7 @@ if ($logout == 'logout') {
                     include('users/user.php');
                     include('comments/comment.php');
                     include('questions/question.php');
+                    include('orders/order.php');
 
                     if (isset($_GET["page"])) {
                         $url = $_GET["page"];
@@ -125,8 +126,14 @@ if ($logout == 'logout') {
                         case "listQuestions":
                             include('questions/list.php');
                             break;
-                        case "forgotPassword":
-                            include('includes/forgotPassword.php');
+                        case "listOrders":
+                            include('orders/list.php');
+                            break;
+                        case "updStatusOrder":
+                            include('orders/update.php');
+                            break;
+                        case "detailOrder":
+                            include('orders/detail.php');
                             break;
                         case "nextPage":
                             echo "<script>document.location='../index.php';</script>";

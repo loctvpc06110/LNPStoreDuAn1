@@ -213,7 +213,8 @@ else if (isset($_POST['checkout'])) {
 
 
 <?php
-$checkOrder = $db->checkOrder($row_user['user_id']);
+$db_bill = new Order();
+$checkOrder = $db_bill->checkOrder($row_user['user_id']);
 if ($checkOrder != 0) { ?>
 
     <section id="order" class="section-p1">
@@ -230,13 +231,13 @@ if ($checkOrder != 0) { ?>
             </thead>
             <tbody>
                 <?php
-                $rows_bill = $db->getBillGrByCode();
+                $rows_bill = $db_bill->getBillGrByCode();
 
                 foreach ($rows_bill as $row_bill) { ?>
 
                 <?php 
-                $total_quantity = $db->sumQuantity($row_bill['commodity_codes']);
-                $total_price = $db->totalPrice($row_bill['commodity_codes'], $row_bill['prod_id']);
+                $total_quantity = $db_bill->sumQuantity($row_bill['commodity_codes']);
+                $total_price = $db_bill->totalPrice($row_bill['commodity_codes'], $row_bill['prod_id']);
                 ?>
                     <tr>
                         <td><?= $total_quantity['total_quantity'] ?></td>

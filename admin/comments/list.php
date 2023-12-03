@@ -54,7 +54,7 @@
                                 ?>
                                 <?= $totalcmt['totalCmt']; ?>
                             </td>
-                            <td><a href="?page=detailComment&id=<?= $row['id_prod'] ?>"><button type="button" class="btn btn-secondary">See</button></a></td>
+                            <td><a href="?page=detailComment&id=<?= $row['id_prod'] ?>"><button type="button" class="btn btn-secondary">Xem</button></a></td>
                         </tr>
 
                     <?php } ?>
