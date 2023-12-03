@@ -288,6 +288,11 @@ class Product
         return $result;
     }
 
+    public function format_price($price) {
+        $formatted_price = number_format($price, 0, ',', '.');
+        return $formatted_price;
+    }
+
     public function getProdByID($prod_id) {
         $db = new connect();
         $query = "SELECT * FROM products WHERE prod_id = '$prod_id'";
