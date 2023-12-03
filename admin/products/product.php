@@ -287,4 +287,11 @@ class Product
         $result = $db->pdo_execute($query);
         return $result;
     }
+
+    public function getProdByID($prod_id) {
+        $db = new connect();
+        $query = "SELECT * FROM products WHERE prod_id = '$prod_id'";
+        $result = $db->pdo_query_one($query);
+        return $result;
+    }
 }
