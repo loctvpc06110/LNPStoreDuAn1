@@ -60,7 +60,7 @@ class Product
         $result = $db->pdo_query($query);
         return $result;
     }
-    public function editList()
+    public function editList($id)
     {
         $db = new connect();
         $query = "SELECT  products.prod_id AS prod_id, products.status AS prod_status, products.image AS image, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name 
@@ -69,9 +69,9 @@ class Product
         INNER JOIN categories ON products.cate_id = categories.cate_id
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
         INNER JOIN desc_image ON products.prod_id = desc_image.prod_id
-        GROUP BY prod_id;";
+        GROUP BY prod_id = $id;";
 
-        $result = $db->pdo_query($query);
+        $result = $db->pdo_query_one($query);
         return $result;
     }
     public function getListDetailByID($id)

@@ -45,11 +45,11 @@
             <?php } ?>
         </select><br>
 
-        <button tyle="submit" name="addCate" class="btn btn-primary">Sửa</button>
+        <button tyle="submit" name="editCate" class="btn btn-primary">Sửa</button>
     </form>
 </div>
 <?php
-if (isset($_POST['addCate'])) {
+if (isset($_POST['editCate'])) {
     $cate_id = $_POST['cate_id'];
     $name = $_POST['cateName'];
     $price = $_POST['catePrice'];
@@ -73,24 +73,6 @@ if (isset($_POST['addCate'])) {
     $promo_id = $_POST['promoId'];
 
     $db = new Product();
-    $addProduct = $db->insertProd($name, $price, $image, $status, $promo_id, $cate_id);
-    if (isset($addProduct)) {
-        $row = $db->getByName($name);
-        $prod_id = $row['prod_id'];
-
-        foreach ($files_name as $key => $value) {
-            $addImgs = $db->addImgs($prod_id, $value);
-        }
-    }
-    $screen = $_POST['screen'];
-    $os = $_POST['osName'];
-    $camera = $_POST['camera'];
-    $camera_front = $_POST['cameraFront'];
-    $chip = $_POST['chipName'];
-    $ram = $_POST['ramName'];
-    $rom = $_POST['romName'];
-    $sim = $_POST['simName'];
-    $battery = $_POST['batteryName'];
-    $addDetail = $db->addDetail($prod_id, $screen, $os, $camera, $camera_front, $chip, $ram, $rom, $sim, $battery);
+    $addProduct = $db->insertProd($name, $price, $image, $status, $promo_id, $cate_id);    
 }
 ?>
