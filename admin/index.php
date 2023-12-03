@@ -68,9 +68,14 @@ if ($logout == 'logout') {
 
                     include('includes/pdo.php');
                     include('products/product.php');
+<<<<<<<<< Temporary merge branch 1
+        
                     include('categories/categories.php');
+>>>>>>>>> Temporary merge branch 2
                     include('users/user.php');
                     include('comments/comment.php');
+                    include('questions/question.php');
+                    include('orders/order.php');
 
                     if (isset($_GET["page"])) {
                         $url = $_GET["page"];
@@ -117,14 +122,20 @@ if ($logout == 'logout') {
                         case "detailComment":
                             include('comments/detail.php');
                             break;
-                        case "login":
-                            include('includes/login.php');
+                        case "denyCommnet":
+                            include('comments/deny.php');
                             break;
-                        case "register":
-                            include('includes/register.php');
+                        case "listQuestions":
+                            include('questions/list.php');
                             break;
-                        case "forgotPassword":
-                            include('includes/forgotPassword.php');
+                        case "listOrders":
+                            include('orders/list.php');
+                            break;
+                        case "updStatusOrder":
+                            include('orders/update.php');
+                            break;
+                        case "detailOrder":
+                            include('orders/detail.php');
                             break;
                         case "nextPage":
                             echo "<script>document.location='../index.php';</script>";
@@ -180,7 +191,6 @@ if ($logout == 'logout') {
     <script>
         <?php
         $db_cmt = new Comment();
-
         ?>
         const ctx = document.getElementById('myChart');
         new Chart(ctx, {

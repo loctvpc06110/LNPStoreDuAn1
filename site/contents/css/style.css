@@ -288,7 +288,6 @@ body {
     width: calc(25% - 30px);
     min-width: 250px;
     padding: 10px 12px;
-    margin-left: 20px;
     border: 1px solid  #cce7d0;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
     margin: 15px 0;
@@ -1017,32 +1016,33 @@ footer a:hover {
     justify-content: space-between;
 }
 
-#coupon {
+#subtotal {
     width: 50%;
     margin-bottom: 30px;
 }
 
-#coupon h3,
 #subtotal h3 {
     padding-bottom: 15px;
 }
 
-#coupon input {
+#checkout input,
+#subtotal input {
     padding: 10px;
     outline: none;
-    width: 60%;
+    width: 100%;
     margin-right: 10px;
     border: 1px solid #e2e9e1;
 }
 
-#coupon button,
+#checkout button,
 #subtotal button {
     background-color: var(--scondry--color);
     color: #fff;
     padding: 12px 20px;
 }
 
-#subtotal {
+#subtotal,
+#checkout {
     width: 50%;
     margin-bottom: 30px;
     border: 1px solid #e2e9e1;

@@ -75,4 +75,6 @@ if (isset($_POST['editCate'])) {
     $db = new Product();
     $addProduct = $db->insertProd($name, $price, $image, $status, $promo_id, $cate_id);    
 }
+<?php 
+    
 ?>

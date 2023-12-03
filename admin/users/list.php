@@ -46,9 +46,18 @@
                             <td><?= $row['email']?></td>
                             <td><?= $row['role']?></td>
                             <td><?= $row['status']?></td>
-                            <td><a href="?page=lockUser&id=<?= $row['user_id'] ?>" class="nav-link" style="text-align: center;">
-                                <i class="fa-solid fa-lock"></i>
-                            </a></td>     
+                            <td>
+                                <a href="?page=lockUser&id=<?= $row['user_id'] ?>" class="nav-link" style="text-align: center;">
+                                <?php
+                                    if($row['status'] == "Hoạt Động"){
+                                        echo '<i class="fa-solid fa-lock-open"></i>';
+                                    }else{
+                                        echo '<i class="fa-solid fa-lock"></i>';
+                                    }
+                                ?>
+                                
+                                </a>
+                            </td>     
                         </tr>
 
                     <?php } ?>

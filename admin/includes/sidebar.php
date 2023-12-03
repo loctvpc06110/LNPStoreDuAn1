@@ -34,7 +34,7 @@
     <!-- Nav Item - list categories -->
     <li class="nav-item">
         <a class="nav-link" href="?page=listCategories">
-            <i class="fa-solid fa-shirt"></i>
+        <i class="fa-solid fa-mobile-screen-button"></i>
             <span>Loại Sản Phẩm</span></a>
     </li>
     <!-- Divider -->
@@ -58,7 +58,25 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- Nav Item - list user -->
+    <!-- Nav Item - list question -->
+    <li class="nav-item">
+        <a class="nav-link" href="?page=listQuestions">
+            <i class="fa-regular fa-circle-question"></i>
+            <span>Câu Hỏi</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Nav Item - list order -->
+    <li class="nav-item">
+        <a class="nav-link" href="?page=listOrders">
+            <i class="fa-solid fa-box"></i>
+            <span>Đơn Hàng</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Nav Item - Trang Site -->
     <li class="nav-item">
         <a class="nav-link" href="?page=nextPage">
             <i class="fa-solid fa-repeat"></i>
