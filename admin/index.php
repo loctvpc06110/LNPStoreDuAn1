@@ -77,7 +77,6 @@ if ($logout == 'logout') {
                     } else {
                         $url = "home";
                     }
-
                     switch ($url) {
                         case "home":
                             include('includes/dashboard.php');
