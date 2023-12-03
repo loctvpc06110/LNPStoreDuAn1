@@ -20,6 +20,15 @@ class Product
         return $result;
     }
 
+    public function updateProd($name, $price, $image, $status, $promo_id, $cate_id, $prod_id)
+    {
+        $db = new connect();
+        $sql = "UPDATE products SET name = '$name', price = '$price', image = '$image', status = '$status', promo_id = '$promo_id', cate_id = '$cate_id'
+        WHERE prod_id = '$prod_id'";
+        $result = $db->pdo_execute($sql);
+        return $result;
+    }
+
     public function getListDetail()
     {
         $db = new connect();
@@ -84,7 +93,7 @@ class Product
     public function getListDetailByID($id)
     {
         $db = new connect();
-        $query = "SELECT *, products.prod_id AS id_prod, products.status AS prod_status, products.price AS prod_price, products.name AS prod_name, products.image AS prod_image, categories.name AS cate_name, promotions.name AS promo_name  
+        $query = "SELECT *, products.prod_id AS id_prod, categories.cate_id AS id_cate, products.status AS prod_status, products.price AS prod_price, products.name AS prod_name, products.image AS prod_image, categories.name AS cate_name, promotions.name AS promo_name, promotions.promo_id AS id_promo
         FROM products 
         INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
         INNER JOIN categories ON products.cate_id = categories.cate_id
@@ -158,8 +167,14 @@ class Product
         return $result;
     }
 
-    public function getDescImage($id)
-    {
+    public function listPromotions() {
+        $db = new connect();
+        $query = "SELECT * FROM promotions";
+        $result = $db->pdo_query($query);
+        return $result;
+    }
+
+    public function getDescImage($id){
         $db = new connect();
         $query = "SELECT * FROM desc_image WHERE prod_id = '$id'";
         $result = $db->pdo_query($query);
@@ -275,15 +290,24 @@ class Product
         $result = $db->pdo_query_one($query);
         return $result;
     }
+
     public function addImgs($prod_id, $image){
         $db = new connect();
         $query = "INSERT INTO desc_image(prod_id, image) values ('$prod_id', '$image')";
         $result = $db->pdo_execute($query);
         return $result;
     }
+
     public function addDetail($prod_id, $screen, $os, $camera, $camera_front, $chip, $ram, $rom, $sim, $battery){
         $db = new connect();
         $query = "INSERT INTO detail_prod(prod_id, screen, os, camera, camera_front, chip, ram, rom, sim, battery) values ('$prod_id', '$screen', '$os', '$camera', '$camera_front', '$chip', '$ram', '$rom', '$sim', '$battery')";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+
+    public function upDetail($screen, $os, $camera, $camera_front, $chip, $ram, $rom, $sim, $battery, $prod_id){
+        $db = new connect();
+        $query = "UPDATE detail_prod SET screen = '$screen', os = '$os', camera = '$camera', camera_front = '$camera_front', chip = '$chip', ram = '$ram', rom = '$rom', sim = '$sim', battery = '$battery' WHERE prod_id = '$prod_id'";
         $result = $db->pdo_execute($query);
         return $result;
     }
@@ -320,4 +344,19 @@ class Product
         $number_of_rows = $result->fetchColumn(); 
         return $number_of_rows;
     }
+
+    public function removeProd($prod_id) {
+        $db = new connect();
+        $query = "DELETE FROM products WHERE prod_id = '$prod_id'";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+
+    public function deleteDescImageByProdID($prod_id) {
+        $db = new connect();
+        $query = "DELETE FROM desc_image WHERE prod_id = '$prod_id'";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+
 }

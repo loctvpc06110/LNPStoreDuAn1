@@ -39,7 +39,7 @@ if (isset($_GET['id'])) {
                 <?= $row['prod_name'] ?>
             </h4>
             <h2 id="pricePro">
-                <?= $row['price'] ?> VNĐ
+                <?= $db->format_price($row['price']) ?> VNĐ
             </h2>
 
             <input name="prod_quantity" type="number" value="1">
@@ -195,7 +195,7 @@ if (isset($_SESSION['login_email_user'])) {
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <h4>$ <?php echo $row_sml['price'] ?></h4>
+                        <h4><?php echo $db->format_price($row_sml['price']) ?> VNĐ</h4>
                     </div>
                     <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
                 </div>

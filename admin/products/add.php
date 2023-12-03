@@ -6,7 +6,7 @@
     <label>Danh mục sản phẩm: </label>
     <select name="cate_id" class="form-floating mb-3 mt-3">
         <?php
-        $db = new Categories();
+        $db = new Category();
         $rows2 = $db->lishCategories();
 
         foreach ($rows2 as $row2) { ?>
@@ -36,11 +36,9 @@
     <select name="promoId" class="form-floating mb-3 mt-3">
         <?php
         $db = new Product();
-        $rows1 = $db->prodPromo();
-
+        $rows1 = $db->listPromotions();
         foreach ($rows1 as $row1) { ?>
-
-            <option value=<?php echo $row1['promo_id'] ?>><?php echo $row1['promo_name'] ?></option>
+            <option value=<?= $row1['promo_id'] ?>><?= $row1['name'] ?></option>
 
         <?php } ?>
     </select>

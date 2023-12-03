@@ -111,14 +111,14 @@ else if (isset($_POST['checkout'])) {
                             <?= $rowProd['ram'] ?> / <?= $rowProd['rom'] ?>
                         </td>
                         <td>
-                            <?= $rowProd['price'] ?> VNĐ
+                            <?= $db->format_price($rowProd['price']) ?> VNĐ
                         </td>
                         <td>
                             <input type="number" min="1" name="quantity[]" value="<?= $rowCart['quantity'] ?>">
                             <input type="hidden" name="product_id[]" value="<?= $rowCart['prod_id'] ?>">
                         </td>
                         <td>
-                            <?= $subtotal ?> VNĐ
+                            <?= $db->format_price($subtotal) ?> VNĐ
                         </td>
                     </tr>
                 <?php } ?>
@@ -138,7 +138,7 @@ else if (isset($_POST['checkout'])) {
             <tr>
                 <td>Tổng Giỏ Hàng</td>
                 <td>
-                    <?= $total ?> VNĐ
+                    <?= $db->format_price($total) ?> VNĐ
                 </td>
             </tr>
             <tr>
@@ -148,7 +148,7 @@ else if (isset($_POST['checkout'])) {
             <tr>
                 <td><strong>Tổng Tiên Cần Thanh Toán</strong></td>
                 <td><strong>
-                        <?= $total ?> VNĐ
+                    <?= $db->format_price($total) ?> VNĐ
                     </strong></td>
             </tr>
             <tr>
@@ -241,7 +241,7 @@ if ($checkOrder != 0) { ?>
                 ?>
                     <tr>
                         <td><?= $total_quantity['total_quantity'] ?></td>
-                        <td><?= $total_price['total_price'] ?> VNĐ</td>
+                        <td><?= $db->format_price($total_price['total_price']) ?> VNĐ</td>
                         <td><?= $row_bill['address']?></td>
                         <td>
                             <?= $row_bill['status']?>  

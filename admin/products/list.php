@@ -58,7 +58,7 @@
                                 <img src="../images/prod/<?= $row['image'] ?>" alt="image-product" width="80px">
                             </td>
                             <td>
-                                <?= $row['price'] ?> VNĐ
+                                <?= $dblist->format_price($row['price']) ?> VNĐ
                             </td>
                             <td>
                                 <?= $row['promo_name'] ?>
