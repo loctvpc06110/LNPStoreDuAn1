@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
                 echo "<script>document.location='index.php?page=home';</script>";
                 }else{
                     $err = "Tài khoản của bạn đã bị khóa !";
-                }         
+                }
             }
             else if ($checkRole['role'] == "Admin"){
                 if($checkRole['status'] == "Hoạt Động"){
@@ -30,9 +30,9 @@ if (isset($_POST['login'])) {
                 } 
                 
             }
-            else {
-            $err = "Tài khoản hoặc mặt khẩu không chính xác";
-        } 
+           
+        } else {
+            $err = "Tài khoản hoặc mặt khẩu không chính xác"; 
         }
     }
 }

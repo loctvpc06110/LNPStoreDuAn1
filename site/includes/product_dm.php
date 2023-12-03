@@ -35,7 +35,7 @@
                             <?php echo $row1['price'] ?> VNĐ
                         </h4>
                     </div>
-                    <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                 </div>
             </a>
 

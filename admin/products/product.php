@@ -139,14 +139,14 @@ class Product
     public function prodPromo() 
     {
         $db = new connect();
-        $query = "SELECT products.prod_id AS prod_id, products.status AS prod_status, products.image AS image, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name,
+        $query = "SELECT *, products.prod_id AS id_prod, products.status AS prod_status, products.image AS image, price, products.name AS prod_name, categories.name AS cate_name, promotions.name AS promo_name,
         promotions.value AS promo_value
         FROM products 
         INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
         INNER JOIN categories ON products.cate_id = categories.cate_id
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
         INNER JOIN desc_image ON products.prod_id = desc_image.prod_id
-        WHERE value != '0' GROUP BY prod_id";
+        WHERE value != '0' GROUP BY products.prod_id";
         $result = $db->pdo_query($query);
         return $result;
     }
