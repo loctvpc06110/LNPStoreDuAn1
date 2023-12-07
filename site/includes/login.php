@@ -8,8 +8,9 @@ if (isset($_POST['login'])) {
     if ($email == "" || $password == "") {
         $err = "Bạn phải nhập thông tin đầy đủ";
     } else {
-        if ($user->checkUserCustomer($email, $password)) {
-            $result = $user->userid($email, $password);
+        $md5Password = md5($password);
+        if ($user->checkUserCustomer($email, $md5Password)) {
+            $result = $user->userid($email, $md5Password);
 
             $checkRole = $user->loginSite($email);
         

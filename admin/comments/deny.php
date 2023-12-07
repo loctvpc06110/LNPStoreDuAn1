@@ -9,6 +9,6 @@
         }else{
             $visibleCmt = $db->visibleCmt($id);
         }
-        echo "<script>document.location='index.php?page=detailComment&id=".$id."';</script>";
+        echo "<script>document.location='index.php?page=denyComment&id=".$id."';</script>";
     }
 ?>

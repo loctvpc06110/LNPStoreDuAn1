@@ -32,7 +32,7 @@ class Product
     public function getListDetail()
     {
         $db = new connect();
-        $query = "SELECT * FROM products INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id";
+        $query = "SELECT * FROM products INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id ORDER BY RAND() LIMIT 8;";
         $result = $db->pdo_query($query);
         return $result;
     }
@@ -40,7 +40,8 @@ class Product
     {
         $db = new connect();
         $query = "SELECT *, products.prod_id AS ID_prod FROM products 
-        INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id 
+        INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
+        WHERE status LIKE '%Đang bán%'
         ORDER BY ID_prod desc limit 0,8";
         $result = $db->pdo_query($query);
         return $result;
@@ -85,7 +86,7 @@ class Product
         INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
         INNER JOIN categories ON products.cate_id = categories.cate_id
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
-        WHERE categories.name = '$cate_name' AND products.prod_id != '$prod_id' LIMIT 4";
+        WHERE categories.name = '$cate_name' AND products.prod_id != '$prod_id' ORDER BY RAND() LIMIT 4";
         $result = $db->pdo_query($query);
         return $result;
     }

@@ -9,7 +9,7 @@ if (isset($_POST['sendEmail'])) {
         $err = "Email này chưa đăng ký !";
     } else {
         $newPassword = substr(md5(rand(0, 99999)), 0, 8);
-        $upPassword = $db->forgotPassword($email, $newPassword);
+        $upPassword = $db->forgotPassword($email, md5($newPassword));
 
         //Gửi php mailer
         require "PHPMailer-master/src/PHPMailer.php";

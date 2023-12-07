@@ -2,7 +2,7 @@
 $err = "";
 if (isset($_POST['signup'])) {
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = ($_POST['password']);
     $rePassword = $_POST['rePassword'];
 
     if ($email == '' || $password == '' || $rePassword == '') {
@@ -24,7 +24,7 @@ if (isset($_POST['signup'])) {
     if ($err == "") {
         $db = new User();
         if ($db->checkAccount($email)) {
-            $newAcc = $db->createAcc($email, $password);
+            $newAcc = $db->createAcc($email, md5($password));
             echo "<script>alert('Đăng ký tài khoản thành công');</script>";
             echo "<script>document.location='index.php?page=login';</script>";
         } else {
