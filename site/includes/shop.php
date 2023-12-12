@@ -47,7 +47,7 @@
                             <?= $row1['rom'] ?> / <?= $row1['ram'] ?>
                         </span>
                         <h5>
-                            <?= $row1['name'] ?>
+                            <?= $row1['prod_name'] ?>
                         </h5>
                         <div class="star">
                             <i class="fas fa-star"></i>

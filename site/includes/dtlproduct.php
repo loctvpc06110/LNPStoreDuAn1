@@ -106,7 +106,7 @@ if (isset($_SESSION['login_email_user'])) {
 
     if (isset($_POST['comment'])) {
         $content = $_POST['content'];
-        $cmt = $db_comment->createComment($id, $content, $row_user['user_id']);
+        $cmt = $dbCmt->createComment($id, $content, $row_user['user_id']);
         echo "<script>document.location='index.php?page=detail&id=" . $id . "'</script>";
     }
 } else if (isset($_SESSION['login_email_admin'])) {

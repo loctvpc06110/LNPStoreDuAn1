@@ -1,4 +1,11 @@
 <?php
+if (isset($_SESSION['login_email_user'])) {
+    $email = $_SESSION['login_email_user'];
+    echo "<script>document.location='index.php?page=home';</script>";
+}else if (isset($_SESSION['login_email_admin'])) {
+    $email = $_SESSION['login_email_admin'];
+    echo "<script>document.location='index.php?page=home';</script>";
+}
 $err = "";
 if (isset($_POST['signup'])) {
     $email = $_POST['email'];
@@ -37,6 +44,7 @@ if (isset($_POST['signup'])) {
     <div class="wrap">
         <div class="heading">
             <img src="images/logoShop.png" width="200px">
+            <h4>Đăng Ký</h4>
         </div>
         <form method="post">
             <div class="form-group">

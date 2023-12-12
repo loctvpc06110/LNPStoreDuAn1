@@ -1,4 +1,11 @@
 <?php
+if (isset($_SESSION['login_email_user'])) {
+    $email = $_SESSION['login_email_user'];
+    echo "<script>document.location='index.php?page=home';</script>";
+}else if (isset($_SESSION['login_email_admin'])) {
+    $email = $_SESSION['login_email_admin'];
+    echo "<script>document.location='index.php?page=home';</script>";
+}
 $err = "";
 if (isset($_POST['login'])) {
 
@@ -42,6 +49,7 @@ if (isset($_POST['login'])) {
     <div class="wrap">
         <div class="heading">
             <img src="images/logoShop.png" width="200px">
+            <h4>Đăng Nhập</h4>
         </div>
         <form method="post">
             <div class="form-group">
@@ -53,11 +61,6 @@ if (isset($_POST['login'])) {
                 <input type="password" id="_password" name="password">
                 <span>Mật khẩu</span>
                 <i></i>
-            </div>
-            <br>
-            <div class="mb3 form-check">
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember">Nhớ tài khoản</label>
             </div>
             <?php global $err;
             if ($err != "") { ?>

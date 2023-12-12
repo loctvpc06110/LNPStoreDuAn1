@@ -81,5 +81,19 @@ class Category
         $CategoriesDM = $db->pdo_query_one($sql);
         return $CategoriesDM;
     }
+
+    public function uptStatusNKD($cate_id){
+        $db = new connect();
+        $sql = "UPDATE products SET status = 'Ngừng kinh doanh' WHERE cate_id = '$cate_id'";
+        $result = $db->pdo_execute($sql);
+        return $result;
+    }
+
+    public function uptStatusKD($cate_id){
+        $db = new connect();
+        $sql = "UPDATE products SET status = 'Đang bán' WHERE cate_id = '$cate_id'";
+        $result = $db->pdo_execute($sql);
+        return $result;
+    }
 }
 ?>

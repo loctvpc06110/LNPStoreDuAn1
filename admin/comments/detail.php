@@ -77,7 +77,7 @@ $row_prod = $db_prod->getListDetailByID($id);
               <td><?= $row['create_at'] ?></td>
               <td><?= $row['content'] ?></td>
               <td>
-                <a href="?page=denyCommnet&deny=<?= $row['cmt_id'] ?>">
+                <a href="?page=denyComment&deny=<?= $row['cmt_id'] ?>">
                   <?php
                     if($row['status_cmt'] == "Hiện"){
                       echo "<button type='button' class='btn btn-success' name='status'>".$row['status_cmt']."</button>";

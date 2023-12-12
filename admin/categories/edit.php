@@ -2,13 +2,22 @@
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $data = new Category();
-    $row = $data->getByID($id);
+    $db = new Category();
+    $row = $db->getByID($id);
 
     if (isset($_POST['editCate'])) {
         $CateName = $_POST['categoryName'];
         $status = $_POST['status'];
-        $edit = $data->update($CateName, $status, $row['cate_id']);
+        $edit = $db->update($CateName, $status, $row['cate_id']);
+
+        if (isset($edit)){
+            if ($status == 'Ngừng kinh doanh'){
+                $db->uptStatusNKD($id);
+            } else {
+                $db->uptStatusKD($id);
+            }
+        }
+
         echo "<script>document.location='index.php?page=listCategories';</script>";
     }
 }

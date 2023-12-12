@@ -80,6 +80,9 @@ body {
     width: 100%;
 }
 
+a:hover{
+    text-decoration: none;
+}
 /* Header Start --------------------------------------------------------------------------------------------------------------------------------*/
 
 #header {
@@ -1089,7 +1092,7 @@ footer a:hover {
 
 #login {
     position: relative;
-    padding: 50px;
+    padding: 50px 50px 20px 50px;
     background: #fff;
     display: flex;
     justify-content: center;
@@ -1128,9 +1131,10 @@ footer a:hover {
 }
 
 #login .heading h4 {
-    padding: 20px 0;
+    padding: 25px 0;
     font-size: 28px;
     color: var(--scondry--color);
+    font-weight: 600;
 }
 
 #login .btn {
@@ -1163,7 +1167,7 @@ footer a:hover {
 
 #login .form-group a.forgot_pw {
     color: #000;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 #login .form-group a.forgot_pw:hover {

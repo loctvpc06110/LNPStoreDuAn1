@@ -119,7 +119,7 @@ if ($logout == 'logout') {
                         case "detailComment":
                             include('comments/detail.php');
                             break;
-                        case "denyCommnet":
+                        case "denyComment":
                             include('comments/deny.php');
                             break;
                         case "listQuestions":

@@ -52,7 +52,7 @@ class Product
         $query = "SELECT * FROM categories 
         INNER JOIN products ON categories.cate_id = products.cate_id
         INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id 
-        WHERE products.cate_id='$id_pro';";
+        WHERE products.cate_id='$id_pro' AND products.status = 'Đang bán';";
         $result = $db->pdo_query($query);
         return $result;
     }
@@ -67,10 +67,10 @@ class Product
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
         INNER JOIN desc_image ON products.prod_id = desc_image.prod_id
         GROUP BY prod_id;";
-
         $result = $db->pdo_query($query);
         return $result;
     }
+    
     public function updateViews($id)
     {
         $db = new connect();
@@ -86,7 +86,7 @@ class Product
         INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
         INNER JOIN categories ON products.cate_id = categories.cate_id
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
-        WHERE categories.name = '$cate_name' AND products.prod_id != '$prod_id' ORDER BY RAND() LIMIT 4";
+        WHERE categories.name = '$cate_name' AND products.status = 'Đang bán' AND products.prod_id != '$prod_id' ORDER BY RAND() LIMIT 4";
         $result = $db->pdo_query($query);
         return $result;
     }
@@ -99,14 +99,28 @@ class Product
         INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
         INNER JOIN categories ON products.cate_id = categories.cate_id
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
+        WHERE products.prod_id = $id AND products.status = 'Đang bán'";
+        $result = $db->pdo_query_one($query);
+        return $result;
+    }
+
+    public function editProdByID($id)
+    {
+        $db = new connect();
+        $query = "SELECT *, products.prod_id AS id_prod, categories.cate_id AS id_cate, products.status AS prod_status, products.price AS prod_price, products.name AS prod_name, products.image AS prod_image, categories.name AS cate_name, promotions.name AS promo_name, promotions.promo_id AS id_promo
+        FROM products 
+        INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
+        INNER JOIN categories ON products.cate_id = categories.cate_id
+        INNER JOIN promotions ON products.promo_id = promotions.promo_id
         WHERE products.prod_id = $id";
         $result = $db->pdo_query_one($query);
         return $result;
     }
+
     public function checksearch($keyS)
     {
         $db = new connect();
-        $sql = "SELECT count(*) FROM products WHERE products.name LIKE '%$keyS%'";
+        $sql = "SELECT count(*) FROM products WHERE products.name LIKE '%$keyS%' AND products.status = 'Đang bán'";
         $result = $db->pdo_execute($sql);
         $number_of_rows = $result->fetchColumn();
         return  $number_of_rows;
@@ -115,12 +129,12 @@ class Product
     public function getByKey($keyS)
     {
         $db = new connect();
-        $query = "SELECT *, products.prod_id AS id_prod, products.status AS prod_status, price, products.name AS prod_name, categories.name AS cate_name  
+        $query = "SELECT *, products.prod_id AS id_prod, categories.cate_id AS id_cate, products.status AS prod_status, products.price AS prod_price, products.name AS prod_name, products.image AS prod_image, categories.name AS cate_name, promotions.name AS promo_name, promotions.promo_id AS id_promo,  promotions.value AS promo_value
         FROM products 
-        INNER JOIN categories ON products.cate_id = categories.cate_id
         INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id
-        WHERE products.name LIKE '%$keyS%'";
-        $result = $db->pdo_execute($query);
+        INNER JOIN categories ON products.cate_id = categories.cate_id
+        INNER JOIN promotions ON products.promo_id = promotions.promo_id
+        WHERE products.name LIKE '%$keyS%' AND products.status = 'Đang bán'";
         $result = $db->pdo_query($query);
         return  $result;
     }
@@ -163,7 +177,8 @@ class Product
         INNER JOIN categories ON products.cate_id = categories.cate_id
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
         INNER JOIN desc_image ON products.prod_id = desc_image.prod_id
-        WHERE value != '0' GROUP BY products.prod_id";
+        WHERE value != '0' AND products.status = 'Đang bán'
+        GROUP BY products.prod_id";
         $result = $db->pdo_query($query);
         return $result;
     }
@@ -333,6 +348,7 @@ class Product
         INNER JOIN categories ON products.cate_id = categories.cate_id
         INNER JOIN promotions ON products.promo_id = promotions.promo_id
         INNER JOIN desc_image ON products.prod_id = desc_image.prod_id
+        WHERE products.status = 'Đang bán'
         GROUP BY products.prod_id ASC LIMIT $start, $limit;";
         $result = $db->pdo_query($query);
         return $result;

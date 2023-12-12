@@ -2,7 +2,7 @@
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $db_prod = new Product();
-    $row_prod = $db_prod->getListDetailByID($id);
+    $row_prod = $db_prod->editProdByID($id);
     $rows_image = $db_prod->getDescImage($id);
 }
 ?>
@@ -39,8 +39,8 @@ if (isset($_GET['id'])) {
             <label>Tình Trạng</label>
             <select class="form-control" name="status">
                 <option value="<?= $row_prod['prod_status'] ?>"><?= $row_prod['prod_status'] ?></option>
-                <option value="Còn kinh doanh">Còn kinh doanh</option>
                 <option value="Ngừng kinh doanh">Ngừng kinh doanh</option>
+                <option value="Đang bán">Đang bán</option>
             </select>
         </div>
         <label>Khuyến mãi: </label>

@@ -18,19 +18,19 @@
     </div>
         <div class="col">
             <h4>Giới Thiệu</h4>
-            <a href="#">Giới Thiệu LNP Store</a>
-            <a href="#">Thông Tin Giao Hàng</a>
-            <a href="#">Chính Sách Bảo Mật</a>
-            <a href="#">Điều Khoản & Điều Kiện</a>
-            <a href="#">Liên Hệ</a>
+            <a href="?page=about">Giới Thiệu LNP Store</a>
+            <a href="?page=cart">Thông Tin Giao Hàng</a>
+            <a href="?page=contact">Chính Sách Bảo Mật</a>
+            <a href="?page=contact">Điều Khoản & Điều Kiện</a>
+            <a href="?page=contact">Liên Hệ</a>
         </div>
         <div class="col">
             <h4>Tài Khoản</h4>
-            <a href="#">Đăng Nhập</a>
-            <a href="#">Xem Giỏ Hàng</a>
-            <a href="#">Danh Sách Yêu Thích</a>
-            <a href="#">Theo Dỗi Đơn Hàng</a>
-            <a href="#">Hỗ Trợ</a>
+            <a href="?page=login">Đăng Nhập</a>
+            <a href="?page=cart">Xem Giỏ Hàng</a>
+            <a href="?page=cart">Danh Sách Yêu Thích</a>
+            <a href="?page=cart">Theo Dỗi Đơn Hàng</a>
+            <a href="?page=contact">Hỗ Trợ</a>
         </div>
         <div class="col install">
             <h4>Install App</h4>

@@ -36,7 +36,7 @@ if (isset($_POST["changePW"])) {
 
     if ($oldPassword == "" || $newPassword == "" || $retypePassword == "") {
         $errChangePW = "Vui lòng nhập đủ thông tin !";
-    } else if ($password != $oldPassword) {    
+    } else if ($password != md5($oldPassword)) {    
             $errChangePW = "Mật khẩu không chính xác !";
     } else if (strlen($newPassword) < 8) {
         $errChangePW = "Mật khẩu ít nhất 8 kí tự !";
@@ -45,7 +45,7 @@ if (isset($_POST["changePW"])) {
     }
 
     if ($errChangePW == "") {
-        $changePassword = $db->changePassword($newPassword, $row_up['user_id']);
+        $changePassword = $db->changePassword(md5($newPassword), $row_up['user_id']);
         $errChangePW = "1";
     }
 }
@@ -69,12 +69,12 @@ if (isset($_POST["changePW"])) {
                             echo $row_up['email']; ?>">
                 </div>
                 <div class="form-group">
-                    <label for="">Phone: </label><br>
+                    <label for="">Số điện thoại: </label><br>
                     <input type="text" name="customer_phone" class="form-control" style="width: 100%;" value="<?php if (isset($row_up['phone']))
                         echo $row_up['phone']; ?>">
                 </div>
                 <div class="form-group">
-                    <label for="">Address: </label><br>
+                    <label for="">Địa chỉ: </label><br>
                     <input type="text" name="customer_address" class="form-control" style="width: 100%;" value="<?php if (isset($row_up['address']))
                         echo $row_up['address']; ?>">
                 </div>

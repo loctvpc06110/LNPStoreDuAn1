@@ -19,9 +19,9 @@ Chúng tôi hiểu rằng sự hài lòng của khách hàng là trên hết, v�
 </section>
 
 <section id="about-app" class="section-p1">
-    <h1>Download Our <a href="#">App</a></h1>
+    <h2>Luôn Cập Nhập Sản Phẩm Tốt Nhất <a href="#">LNP Store</a></h1>
     <div class="video">
-        <video autoplay muted loop src="images/1.mp4"></video>
+        <video autoplay muted loop src="images/2.mp4"></video>
     </div>
 </section>
 

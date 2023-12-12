@@ -25,6 +25,15 @@
             $result = $db->pdo_query($query);
             return $result;
         }
+
+        public function getBillGrByCodeUser($user_id){
+            $db = new connect();
+            $query = "SELECT * FROM bills
+            WHERE user_id = '$user_id'
+            GROUP BY commodity_codes";
+            $result = $db->pdo_query($query);
+            return $result;
+        }
     
         public function countProd($commodity_codes){
             $db = new connect();

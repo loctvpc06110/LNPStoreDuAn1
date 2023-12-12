@@ -23,16 +23,18 @@
                     <?php
                     $rows = $db->getByKey($keyS);
                     foreach ($rows as $row) { ?>
+
                         <a href="?page=detail&id=<?php echo $row['prod_id']; ?>">
                             <div class="pro">
                                 <img src="images/prod/<?php echo $row['image'] ?>" alt="Image Shirt">
                                 <div class="des">
-
                                     <span>
                                         <?php echo $row['rom'] ?> / <?php echo $row['ram'] ?>
                                     </span>
-
-                                    <h5><?php echo $row['prod_name'] ?></h5>
+                                    <h5><?php echo $row['promo_name'] ?></h5>
+                                    <h5>
+                                        <?php echo $row['prod_name'] ?>
+                                    </h5>
                                     <div class="star">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -40,11 +42,17 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                     </div>
-                                    <h4>$ <?php echo $row['price'] ?></h4>
+                                    <h4 style="color: rgb(177, 177, 177); text-decoration: line-through;">
+                                        <?php echo $db->format_price($row['price']) ?> VNĐ
+                                    </h4>
+                                    <h4>
+                                        <?php echo $db->format_price($row['price'] - $row['price'] * $row['promo_value'] / 100)  ?> VNĐ
+                                    </h4>
                                 </div>
                                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
                             </div>
                         </a>
+
                     <?php } ?>
 
                 </div>

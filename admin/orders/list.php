@@ -9,7 +9,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Số Loại Sản Phẩm</th>
+                        <th>Thời Gian Đặt</th>
                         <th>Tổng Sản Phẩm</th>
                         <th>Tổng Giá</th>
                         <th>Mã Đơn Hàng</th>
@@ -23,7 +23,7 @@
                 <tfoot>
                     <tr>
                         <th>#</th>
-                        <th>Số Sản Phẩm</th>
+                        <th>Thời Gian Đặt</th>
                         <th>Tổng Sản Phẩm</th>
                         <th>Tổng Giá</th>
                         <th>Mã Đơn Hàng</th>
@@ -46,14 +46,13 @@
                     foreach ($rows_bill as $row_bill) { ?>
 
                         <?php
-                        $quantity_prod = $db->countProd($row_bill['commodity_codes']);
                         $total_quantity = $db->sumQuantity($row_bill['commodity_codes']);
                         $total_price = $db->totalPrice($row_bill['commodity_codes'], $row_bill['prod_id']);
                         $row_user = $db_user->getUserByID($row_bill['user_id']);
                         ?>
                         <tr>
                             <td><?= $i++ ?></td>
-                            <td><?= $quantity_prod ?></td>
+                            <td><?= $row_bill['order_time'] ?></td>
                             <td><?= $total_quantity['total_quantity'] ?></td>
                             <td><?= $db_prod->format_price($total_price['total_price']) ?> VNĐ</td>
                             <td><?= $row_bill['commodity_codes'] ?></td>

@@ -7,7 +7,6 @@ if (isset($_SESSION['login_email_user'])) {
 }else if (isset($_SESSION['login_email_admin'])) {
     $email = $_SESSION['login_email_admin'];
 }else{
-    echo "<script>alert('Vui Lòng Đăng Nhập !');</script>";
     echo "<script>document.location='index.php?page=login';</script>";
 }
 $row_user = $db_user->getByEmail($email);
@@ -221,6 +220,7 @@ if ($checkOrder != 0) { ?>
         <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">Thời Gian</th>
                     <th scope="col">Tổng sản Phẩm</th>
                     <th scope="col">Tổng Tiền</th>
                     <th scope="col">Địa Chỉ</th>
@@ -230,7 +230,7 @@ if ($checkOrder != 0) { ?>
             </thead>
             <tbody>
                 <?php
-                $rows_bill = $db_bill->getBillGrByCode();
+                $rows_bill = $db_bill->getBillGrByCodeUser($row_user['user_id']);
 
                 foreach ($rows_bill as $row_bill) { ?>
 
@@ -239,7 +239,8 @@ if ($checkOrder != 0) { ?>
                 $total_price = $db_bill->totalPrice($row_bill['commodity_codes'], $row_bill['prod_id']);
                 ?>
                     <tr>
-                        <td><?= $total_quantity['total_quantity'] ?></td>
+                        <td><?= $row_bill['order_time']?></td>
+                        <td><?= $total_quantity['total_quantity']?></td>
                         <td><?= $db->format_price($total_price['total_price']) ?> VNĐ</td>
                         <td><?= $row_bill['address']?></td>
                         <td>

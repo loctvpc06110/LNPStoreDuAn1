@@ -130,5 +130,7 @@ if (isset($_POST['addCate'])) {
     $sim = $_POST['simName'];
     $battery = $_POST['batteryName'];
     $addDetail = $db->addDetail($prod_id, $screen, $os, $camera, $camera_front, $chip, $ram, $rom, $sim, $battery);
+
+    echo "<script>document.location='index.php?page=listProducts';</script>";
 }
 ?>
