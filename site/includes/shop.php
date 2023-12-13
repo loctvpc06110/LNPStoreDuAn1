@@ -2,8 +2,9 @@
 
 </section>
 <section id="logo-brand" class="section-p1">
+
     <?php
-    $db = new Categories();
+    $db = new Category();
     $rows2 = $db->lishCategories();
 
     foreach ($rows2 as $row2) { ?>
@@ -56,7 +57,7 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <h4>
-                            <?= $row1['price'] ?> VNĐ
+                            <?= $dblist->format_price($row1['price']) ?> VNĐ
                         </h4>
                     </div>
                     <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>

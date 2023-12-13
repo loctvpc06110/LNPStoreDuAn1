@@ -16,8 +16,9 @@
                         <th>Tình Trạng</th>
                         <th>Ảnh</th>
                         <th>Giá</th>
-                        <th>Khuyến Mãi</th>            
+                        <th>Khuyến Mãi</th>
                         <th>Thương Hiệu</th>
+                        <th>Lượt xem</th>
                         <th>Chỉnh Sửa</th>
                         <th>Xóa</th>
                     </tr>
@@ -31,6 +32,7 @@
                         <th>Giá</th>
                         <th>Khuyến Mãi</th>
                         <th>Thương Hiệu</th>
+                        <th>Lượt xem</th>
                         <th>Chỉnh Sửa</th>
                         <th>Xóa</th>
                     </tr>
@@ -42,7 +44,7 @@
                     $rows = $dblist->getList();
 
                     foreach ($rows as $row) { ?>
-                        <tr>    
+                        <tr>
                             <td>
                                 <?= $row['prod_id'] ?>
                             </td>
@@ -56,7 +58,7 @@
                                 <img src="../images/prod/<?= $row['image'] ?>" alt="image-product" width="80px">
                             </td>
                             <td>
-                                <?= $row['price'] ?> VNĐ
+                                <?= $dblist->format_price($row['price']) ?> VNĐ
                             </td>
                             <td>
                                 <?= $row['promo_name'] ?>
@@ -64,11 +66,11 @@
                             <td>
                                 <?= $row['cate_name'] ?>
                             </td>
-                            <td style="text-align: center;"><a href="?page=editProd&id=<?= $row['prod_id'] ?>" class="nav-link"><i
-                                        class="fa-solid fa-pen-to-square"></i></a></td>
-                            <td onclick=" return confirm('Bạn có chắc rằng muốn xóa ?');" style="text-align: center;"><a
-                                    href="?page=removeProd&id=<?= $row['prod_id'] ?>" class="nav-link"><i
-                                        class="fa-regular fa-circle-xmark"></i></a></td>
+                            <td>
+                                <?= $row['view'] ?>
+                            </td>
+                            <td style="text-align: center;"><a href="?page=editProd&id=<?= $row['prod_id'] ?>" class="nav-link"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td onclick=" return confirm('Bạn có chắc rằng muốn xóa ?');" style="text-align: center;"><a href="?page=removeProd&id=<?= $row['prod_id'] ?>" class="nav-link"><i class="fa-regular fa-circle-xmark"></i></a></td>
                         </tr>
 
                     <?php } ?>

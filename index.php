@@ -35,13 +35,13 @@ if ($logout_user == 'logout_user') {
     <?php include('site/includes/_header.php'); ?>
 
         <?php
-        include('admin/includes/pdo.php');
-        include('admin/products/product.php');
-        include('admin/categories/categories.php');
-        include('admin/users/user.php');
-        include('admin/comments/comment.php');
-        include('admin/questions/question.php');
-        include('admin/orders/order.php');
+       include('admin/includes/pdo.php');
+       include('admin/products/product.php');
+       include('admin/categories/category.php');
+       include('admin/users/user.php');
+       include('admin/comments/comment.php');
+       include('admin/questions/question.php');
+       include('admin/orders/order.php');
     if (isset($_GET["page"])) {
         $url = $_GET["page"];
     } else {
@@ -93,11 +93,12 @@ if ($logout_user == 'logout_user') {
             break;
         case 'admin':
             echo "<script>document.location='admin/index.php';</script>";
+        case 'view':
+            include("admin/products/view.php");
     }
     ?>
 
     <?php include('site/includes/_footer.php'); ?>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>

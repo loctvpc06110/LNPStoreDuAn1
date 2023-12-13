@@ -68,7 +68,9 @@ if ($logout == 'logout') {
 
                     include('includes/pdo.php');
                     include('products/product.php');      
-                    include('categories/categories.php');
+                    include('categories/category.php');
+                    include('products/product.php');
+                    include('categories/category.php');
                     include('users/user.php');
                     include('comments/comment.php');
                     include('questions/question.php');
@@ -193,21 +195,21 @@ if ($logout == 'logout') {
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
                 datasets: [{
-                    label: 'Comment',
-                    data: [<? echo $db_cmt->cmt_month(1) ?>,
-                        <? echo $db_cmt->cmt_month(2) ?>,
-                        <? echo $db_cmt->cmt_month(3) ?>,
-                        <? echo $db_cmt->cmt_month(4) ?>,
-                        <? echo $db_cmt->cmt_month(5) ?>,
-                        <? echo $db_cmt->cmt_month(6) ?>,
-                        <? echo $db_cmt->cmt_month(7) ?>,
-                        <? echo $db_cmt->cmt_month(8) ?>,
-                        <? echo $db_cmt->cmt_month(9) ?>,
-                        <? echo $db_cmt->cmt_month(10) ?>,
-                        <? echo $db_cmt->cmt_month(11) ?>,
-                        <? echo $db_cmt->cmt_month(12) ?>
+                    label: 'Thống Kế Tổng Bình Luận Theo Tháng',
+                    data: [<?= $db_cmt->cmt_month(1) ?>,
+                        <?= $db_cmt->cmt_month(2) ?>,
+                        <?= $db_cmt->cmt_month(3) ?>,
+                        <?= $db_cmt->cmt_month(4) ?>,
+                        <?= $db_cmt->cmt_month(5) ?>,
+                        <?= $db_cmt->cmt_month(6) ?>,
+                        <?= $db_cmt->cmt_month(7) ?>,
+                        <?= $db_cmt->cmt_month(8) ?>,
+                        <?= $db_cmt->cmt_month(9) ?>,
+                        <?= $db_cmt->cmt_month(10) ?>,
+                        <?= $db_cmt->cmt_month(11) ?>,
+                        <?= $db_cmt->cmt_month(12) ?>
                     ],
                     borderWidth: 1
                 }]

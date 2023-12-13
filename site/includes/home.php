@@ -37,7 +37,7 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <h4>
-                            <?php echo $row1['price'] ?> VNĐ
+                            <?php echo $db->format_price($row1['price']) ?> VNĐ
                         </h4>
                     </div>
                     <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
@@ -99,8 +99,9 @@
                     <img src="images/prod/<?php echo $row1['image'] ?>" alt="Image Shirt">
                     <div class="des">
                         <span>
-                            <?php echo $row1['rom'] ?> / <?php echo $row1['ram'] ?> <?php echo $row1['promo_name'] ?>
+                            <?php echo $row1['rom'] ?> / <?php echo $row1['ram'] ?> 
                         </span>
+                        <h5><?php echo $row1['promo_name'] ?></h5>
                         <h5>
                             <?php echo $row1['prod_name'] ?>
                         </h5>
@@ -112,10 +113,10 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <h4 style="color: rgb(177, 177, 177); text-decoration: line-through;">
-                            <?php echo $row1['price']?> VNĐ
+                            <?php echo $db->format_price($row1['price']) ?> VNĐ
                         </h4>
                         <h4>
-                            <?php echo $row1['price'] - $row1['price'] * $row1['promo_value'] / 100 ?> VNĐ
+                            <?php echo $db->format_price($row1['price'] - $row1['price'] * $row1['promo_value'] / 100)  ?> VNĐ
                         </h4>
                     </div>
                     <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
