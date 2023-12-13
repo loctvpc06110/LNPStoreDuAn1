@@ -5,6 +5,7 @@ class Category
     var $id = null;
     var $name = null;
     var $status = null;
+    var $image = null;
 
     // hàm lấy tất cả dữ liệu của bảng Categoris
     public function getList() {
@@ -23,17 +24,17 @@ class Category
     }
 
     //hàm insert dữ liệu, create dữ liệu, thêm mới dữ liệu
-    public function add($name,$status){
+    public function add($name, $status, $images){
         $db = new connect();
-        $query = "INSERT INTO categories (cate_id, name, status) values (null, '$name', '$status')";
+        $query = "INSERT INTO categories (name, status, images) values ('$name', '$status', '$images')";
         $result = $db->pdo_execute($query);
         return $result;
     }
 
     //hàm cập nhập dữ liệu
-    public function update($name, $status, $cate_id ){
+    public function update($name, $status, $image, $cate_id ){
         $db = new connect();
-        $query = "UPDATE categories SET name = '$name', status = '$status' WHERE cate_id = '$cate_id'";
+        $query = "UPDATE categories SET name = '$name', status = '$status', images = '$image' WHERE cate_id = '$cate_id'";
         $result = $db->pdo_execute($query);
         return $result;
     }
@@ -94,6 +95,21 @@ class Category
         $sql = "UPDATE products SET status = 'Đang bán' WHERE cate_id = '$cate_id'";
         $result = $db->pdo_execute($sql);
         return $result;
+    }
+
+    public function removeCate($cate_id) {
+        $db = new connect();
+        $query = "DELETE FROM categories WHERE cate_id = '$cate_id'";
+        $result = $db->pdo_execute($query);
+        return $result;
+    }
+
+    public function checkProduct($cate_id){
+        $db = new connect();
+        $sql = "SELECT count(*) FROM products WHERE cate_id = '$cate_id'"; 
+        $result = $db->pdo_execute($sql);
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows;
     }
 }
 ?>

@@ -21,7 +21,9 @@
     
         public function getBillGrByCode(){
             $db = new connect();
-            $query = "SELECT * FROM bills GROUP BY commodity_codes";
+            $query = "SELECT * FROM bills 
+            GROUP BY commodity_codes
+            ORDER BY order_time DESC" ;
             $result = $db->pdo_query($query);
             return $result;
         }
@@ -30,7 +32,8 @@
             $db = new connect();
             $query = "SELECT * FROM bills
             WHERE user_id = '$user_id'
-            GROUP BY commodity_codes";
+            GROUP BY commodity_codes
+            ORDER BY order_time DESC" ;
             $result = $db->pdo_query($query);
             return $result;
         }

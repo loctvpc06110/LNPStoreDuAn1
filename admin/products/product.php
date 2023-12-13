@@ -32,7 +32,9 @@ class Product
     public function getListDetail()
     {
         $db = new connect();
-        $query = "SELECT * FROM products INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id ORDER BY RAND() LIMIT 8;";
+        $query = "SELECT * FROM products 
+        INNER JOIN detail_prod ON products.prod_id = detail_prod.prod_id 
+        ORDER BY RAND() LIMIT 8;";
         $result = $db->pdo_query($query);
         return $result;
     }

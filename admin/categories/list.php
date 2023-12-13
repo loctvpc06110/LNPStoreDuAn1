@@ -11,18 +11,22 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>#</th>
+                   
                         <th>Thương Hiệu</th>
+                        <th>Logo</th>
                         <th>Tình Trạng</th>
                         <th>Chỉnh Sửa</th>
+                        <th>Xóa</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>#</th>
+    
                         <th>Thương Hiệu</th>
+                        <th>Logo</th>
                         <th>Tình Trạng</th>
                         <th>Chỉnh Sửa</th>
+                        <th>Xóa</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -33,10 +37,12 @@
 
                     foreach ($rows as $row) { ?>
                         <tr>
-                            <td><?= $row['cate_id'] ?></td>
+                          
                             <td><?= $row['name'] ?></td>
+                            <td style="text-align: center;"><img src="../images/prod/<?php echo $row['images'] ?>" alt="Image" width="120px"></td>
                             <td><?= $row['status'] ?></td>
                             <td style="text-align: center;"><a href="?page=editCate&id=<?= $row['cate_id'] ?>" class="nav-link"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td onclick=" return confirm('Bạn có chắc rằng muốn xóa ?');" style="text-align: center;"><a href="?page=removeCate&id=<?= $row['cate_id'] ?>" class="nav-link"><i class="fa-regular fa-circle-xmark"></i></a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
